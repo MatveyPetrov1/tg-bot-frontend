@@ -14,6 +14,7 @@ export const App = () => {
     <div className="App">
       <Button onClose={onClose} />
       <span>{user?.username}</span>
+      <h1>hui</h1>
     </div>
   );
 };
