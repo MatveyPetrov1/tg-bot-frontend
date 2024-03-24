@@ -7,8 +7,3 @@
 body {
   background: var(--tg-theme-bg-color);
 }
-
-.button {
-  padding: 10px;
-  font-size: 20px;
-}

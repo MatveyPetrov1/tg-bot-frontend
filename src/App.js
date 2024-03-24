@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Button } from "./Button/index";
 const tg = window.Telegram.WebApp;
 
 export const App = () => {
@@ -13,9 +14,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      <button className="button" onClick={onClose}>
-        Кнопка
-      </button>
+      <Button onClose={onClose} />
     </div>
   );
 };
