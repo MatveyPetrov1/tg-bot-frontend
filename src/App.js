@@ -4,11 +4,11 @@ import { Button } from "./Button/index";
 import { useTelegram } from "./hooks/useTelegram";
 
 export const App = () => {
+  const { user, tg, onClose } = useTelegram();
+
   React.useEffect(() => {
     tg.ready();
   }, []);
-
-  const { user, tg, onClose } = useTelegram();
 
   return (
     <div className="App">
