@@ -6,7 +6,7 @@ import { useTelegram } from "./hooks/useTelegram";
 const tg = window.Telegram.WebApp;
 
 export const App = () => {
-  const { user, onClose } = useTelegram();
+  const { user, onClose, onToggleButton } = useTelegram();
 
   React.useEffect(() => {
     tg.ready();
@@ -16,7 +16,9 @@ export const App = () => {
     <div className="App">
       <Button onClose={onClose} />
       <span>{user?.username}</span>
-      <h1>hui</h1>
+      <button onClick={onToggleButton} style={{ color: "white" }}>
+        toggle
+      </button>
     </div>
   );
 };
