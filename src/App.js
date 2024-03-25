@@ -1,8 +1,9 @@
 import React from "react";
 import "./style.css";
 import { useTelegram } from "./hooks/useTelegram";
-import { Button } from "./components/Button/index";
-import { Header } from "./components/Header/index";
+import { ItemList } from "./components/ItemList/index";
+import { Form } from "./components/Form/index";
+import { Routes, Route } from "react-router-dom";
 
 const tg = window.Telegram.WebApp;
 
@@ -15,13 +16,13 @@ export const App = () => {
 
   return (
     <>
-      <Header />
-      <div className="container">
-        <Button onClose={onClose} />
-        <span>{user?.username}</span>
-        <button onClick={onToggleButton} className="toggle">
-          toggle
-        </button>
+      <div className="App">
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<ItemList />}></Route>
+            <Route path="/form" element={<Form />}></Route>
+          </Routes>
+        </div>
       </div>
     </>
   );
