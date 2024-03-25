@@ -1,3 +1,6 @@
-.items {
+.item {
   background-color: #fff;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
 }

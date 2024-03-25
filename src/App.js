@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
-import { ItemList } from "./components/ItemList/index";
-import { Form } from "./components/Form/index";
+import { ItemList } from "./components/ItemList/ItemList";
+import { Form } from "./components/Form/Form";
 import { Routes, Route } from "react-router-dom";
 
 const tg = window.Telegram.WebApp;
