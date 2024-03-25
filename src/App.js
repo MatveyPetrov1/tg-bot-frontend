@@ -14,13 +14,15 @@ export const App = () => {
   }, []);
 
   return (
-    <div className="container">
+    <>
       <Header />
-      <Button onClose={onClose} />
-      <span>{user?.username}</span>
-      <button onClick={onToggleButton} className="toggle">
-        toggle
-      </button>
-    </div>
+      <div className="container">
+        <Button onClose={onClose} />
+        <span>{user?.username}</span>
+        <button onClick={onToggleButton} className="toggle">
+          toggle
+        </button>
+      </div>
+    </>
   );
 };
