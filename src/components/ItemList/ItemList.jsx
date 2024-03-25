@@ -1,6 +1,7 @@
 import React from "react";
 import "./itemlist.css";
 import { Item } from "../Item/Item";
+import { Link } from "react-router-dom";
 
 const items = ["item1", "item2", "item3"];
 
@@ -10,7 +11,9 @@ export const ItemList = () => {
       {items.map((str) => (
         <Item key={str} str={str} />
       ))}
-      <button>Сделать заказ</button>
+      <div className="link__wrapper">
+        <Link to="/form">Сделать заказ</Link>
+      </div>
     </div>
   );
 };
