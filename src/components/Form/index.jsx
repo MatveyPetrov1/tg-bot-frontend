@@ -1,6 +1,7 @@
 import React from "react";
 import "./form.css";
-import { useTelegram } from "../../hooks/useTelegram";
+
+const tg = window.Telegram.WebApp;
 
 export const Form = () => {
   const [form, setForm] = React.useState({
@@ -8,8 +9,6 @@ export const Form = () => {
     number: "",
     street: "Кирова 30/1",
   });
-
-  const { tg } = useTelegram();
 
   React.useEffect(() => {
     tg.MainButton.setParams({

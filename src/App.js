@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import { useTelegram } from "./hooks/useTelegram";
 import { ItemList } from "./components/ItemList/index";
 import { Form } from "./components/Form/index";
 import { Routes, Route } from "react-router-dom";
@@ -8,8 +7,6 @@ import { Routes, Route } from "react-router-dom";
 const tg = window.Telegram.WebApp;
 
 export const App = () => {
-  const { user, onClose, onToggleButton } = useTelegram();
-
   React.useEffect(() => {
     tg.ready();
   }, []);
