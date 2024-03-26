@@ -32,11 +32,40 @@
   margin: 0 auto;
 }
 
-.item p {
+.item .price {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgb(199, 202, 190);
+  color: #000;
+  border: 0;
+  border-radius: 20px;
+  transition: 0.5s all ease;
+}
+
+.item .price.active {
+  background-color: rgb(146, 192, 57);
+  color: #fff;
+}
+
+.item .price__wrapper {
   display: inline;
 }
 
-.item .bottom {
+.item .price__minus {
+  display: inline;
+  cursor: pointer;
+}
+.item .price__plus {
+  display: inline;
+  cursor: pointer;
+}
+
+.item .total__count {
+  display: inline;
+}
+
+.bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }

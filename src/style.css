@@ -8,6 +8,10 @@ body {
   background: rgb(146, 192, 57);
 }
 
+a {
+  text-decoration: none;
+}
+
 .toggle {
   color: var(--tg-theme-text-color);
 }
