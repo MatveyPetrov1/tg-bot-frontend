@@ -9,11 +9,7 @@ export const Category = ({
 }) => {
   return (
     <option
-      className={
-        currentCategory === index
-          ? "categories__item active"
-          : "categories__item"
-      }
+      className="categories__item"
       onClick={() => onChangeCategory(index)}
     >
       {value}

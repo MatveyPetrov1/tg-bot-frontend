@@ -11,6 +11,24 @@ export const Form = () => {
     street: "Кирова 30/1",
   });
 
+  const onSendData = React.useCallback(() => {
+    const data = {
+      name: form.name,
+      number: form.number,
+      street: form.street,
+    };
+
+    tg.sendData(JSON.stringify(data));
+  }, [form.name, form.number, form.street]);
+
+  React.useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, []);
+
   React.useEffect(() => {
     tg.MainButton.setParams({
       text: "Сделать заказ",
