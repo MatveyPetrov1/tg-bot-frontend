@@ -1,0 +1,22 @@
+import React from "react";
+import "./categories.css";
+
+export const Category = ({
+  value,
+  index,
+  currentCategory,
+  onChangeCategory,
+}) => {
+  return (
+    <li
+      className={
+        currentCategory === index
+          ? "categories__item active"
+          : "categories__item"
+      }
+      onClick={() => onChangeCategory(index)}
+    >
+      {value}
+    </li>
+  );
+};

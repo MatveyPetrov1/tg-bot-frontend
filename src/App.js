@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { ItemList } from "./components/ItemList/ItemList";
+import { MainPage } from "./pages/MainPage";
 import { Form } from "./components/Form/Form";
 import { Routes, Route } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export const App = () => {
       <div className="App">
         <div className="container">
           <Routes>
-            <Route path="/" element={<ItemList />}></Route>
+            <Route path="/" element={<MainPage />}></Route>
             <Route path="/form" element={<Form />}></Route>
           </Routes>
         </div>

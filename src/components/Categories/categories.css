@@ -1,0 +1,32 @@
+li {
+  list-style-type: none;
+}
+
+.categories {
+  margin: 10px 0;
+}
+
+.categories ul {
+  display: flex;
+  column-gap: 10px;
+}
+
+.categories__item {
+  font-size: 20px;
+  color: #000;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: 0.5s all;
+  cursor: pointer;
+}
+
+.categories__item.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.categories__item:hover {
+  background-color: #000;
+  color: #fff;
+}
