@@ -19,7 +19,7 @@ export const Categories = () => {
 
   return (
     <div className="categories">
-      <ul>
+      <select>
         {categoriesArr.map((value, index) => (
           <Category
             key={value}
@@ -29,7 +29,7 @@ export const Categories = () => {
             onChangeCategory={onChangeCategory}
           />
         ))}
-      </ul>
+      </select>
     </div>
   );
 };

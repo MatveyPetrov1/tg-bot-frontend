@@ -8,7 +8,7 @@ export const Category = ({
   onChangeCategory,
 }) => {
   return (
-    <li
+    <option
       className={
         currentCategory === index
           ? "categories__item active"
@@ -17,6 +17,6 @@ export const Category = ({
       onClick={() => onChangeCategory(index)}
     >
       {value}
-    </li>
+    </option>
   );
 };

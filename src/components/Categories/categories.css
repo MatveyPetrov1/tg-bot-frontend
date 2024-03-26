@@ -6,9 +6,10 @@ li {
   margin: 10px 0;
 }
 
-.categories ul {
-  display: flex;
-  column-gap: 10px;
+.categories select {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
 }
 
 .categories__item {
@@ -21,12 +22,12 @@ li {
   cursor: pointer;
 }
 
-.categories__item.active {
+/* .categories__item.active {
   background-color: #000;
   color: #fff;
-}
+} */
 
-.categories__item:hover {
+/* .categories__item:hover {
   background-color: #000;
   color: #fff;
-}
+} */
