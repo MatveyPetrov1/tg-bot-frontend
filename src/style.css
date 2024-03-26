@@ -19,3 +19,42 @@ a {
 .container {
   padding: 0 30px;
 }
+
+.card__button {
+  height: 100px;
+  width: 100vw;
+  background-color: #000;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  transition: 0.5s all ease;
+  animation: 0.5s card-button;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes card-button {
+  0% {
+    opacity: 0;
+    transform: scaleY(300px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(0px);
+  }
+}
+
+.card__button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.card__button:active {
+  background: #fff;
+  color: #000;
+}

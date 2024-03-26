@@ -48,19 +48,13 @@
   color: #fff;
 }
 
-.item .price__wrapper {
-  display: inline;
-}
-
 .item .price__minus {
   display: inline;
   cursor: pointer;
-  user-select: none;
 }
 .item .price__plus {
   display: inline;
   cursor: pointer;
-  user-select: none;
 }
 
 .item .total__count {

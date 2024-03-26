@@ -4,6 +4,7 @@ import { MainPage } from "./pages/MainPage";
 import { Form } from "./components/Form/Form";
 import { Card } from "./pages/Card";
 import { Routes, Route } from "react-router-dom";
+import { CardButton } from "./components/ItemList/CardButton";
 
 const tg = window.Telegram.WebApp;
 
@@ -14,6 +15,7 @@ export const App = () => {
 
   return (
     <>
+      <CardButton />
       <div className="App">
         <div className="container">
           <Routes>
