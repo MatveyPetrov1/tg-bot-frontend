@@ -1,5 +1,6 @@
 import React from "react";
 import "./form.css";
+import { Link } from "react-router-dom";
 
 const tg = window.Telegram.WebApp;
 
@@ -57,6 +58,9 @@ export const Form = () => {
           <option value="Кирова 30/1">Кирова 30/1</option>
           <option value="Кирова 30/2">Кирова 30/2</option>
         </select>
+        <div className="link__wrapper">
+          <Link to="/">Вернуться назад</Link>
+        </div>
       </div>
     </div>
   );
