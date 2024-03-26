@@ -18,7 +18,7 @@ export const Form = () => {
       street: form.street,
     };
 
-    tg.sendData(JSON.stringify(data));
+    tg.sendData(data);
   }, [form]);
 
   React.useEffect(() => {
