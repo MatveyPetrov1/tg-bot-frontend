@@ -1,6 +1,5 @@
 import React from "react";
 import "./item.css";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { plusItem, minusItem } from "../../redux/slices/cartSlice";
 
