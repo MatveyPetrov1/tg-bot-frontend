@@ -22,7 +22,7 @@ a {
 
 .card__button {
   height: 100px;
-  width: 100vw;
+  width: 1000px;
   background-color: #000;
   position: fixed;
   bottom: 0;
