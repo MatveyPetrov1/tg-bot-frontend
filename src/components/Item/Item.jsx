@@ -2,7 +2,6 @@ import React from "react";
 import "./item.css";
 import { useSelector, useDispatch } from "react-redux";
 import { plusItem, minusItem } from "../../redux/slices/cartSlice";
-import { Link } from "react-router-dom";
 
 export const Item = ({ title, price, imageUrl, composition }) => {
   const { items } = useSelector((state) => state.cart);
@@ -38,21 +37,20 @@ export const Item = ({ title, price, imageUrl, composition }) => {
           <div className="total__count">
             {isFinded && isFinded.count > 0 && isFinded.count + " шт."}
           </div>
-          <Link
+          <div
             className={
               isFinded && isFinded.count > 0 ? "price active" : "price"
             }
-            to="/"
           >
             {isFinded && isFinded.count > 0 && (
-              <Link className="price__minus" to="/" onClick={onClickMinus}>
+              <div className="price__minus" onClick={onClickMinus}>
                 -{" "}
-              </Link>
+              </div>
             )}
-            <Link className="price__plus" onClick={onClickPlus} to="/">
+            <div className="price__plus" onClick={onClickPlus}>
               {price} руб. +
-            </Link>
-          </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
