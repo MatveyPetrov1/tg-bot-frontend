@@ -18,10 +18,8 @@ export const Form = () => {
       street: form.street,
     };
 
-    console.log(data);
-
     tg.sendData(JSON.stringify(data));
-  }, [form.name, form.number, form.street]);
+  }, [form]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
