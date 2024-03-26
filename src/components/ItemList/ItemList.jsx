@@ -2,17 +2,26 @@ import React from "react";
 import "./itemlist.css";
 import { Item } from "../Item/Item";
 import { Link } from "react-router-dom";
-
-const items = ["item1", "item2", "item3"];
+import axios from "axios";
 
 export const ItemList = () => {
+  const [items, setItems] = React.useState();
+
+  React.useEffect(() => {
+    const fetchItems = async () => {
+      const { data } = await axios.get(
+        "https://6f04cd2d94cdecc9.mokky.dev/items"
+      );
+      setItems(data);
+    };
+    fetchItems();
+  }, []);
+
   return (
     <div className="itemlist">
-      {items.map((str) => (
-        <Item key={str} str={str} />
-      ))}
+      {items && items.map((obj) => <Item key={obj.title} {...obj} />)}
       <div className="link__wrapper">
-        <Link to="/form">Сделать заказ</Link>
+        <Link to="/form">Перейти в корзину</Link>
       </div>
     </div>
   );
