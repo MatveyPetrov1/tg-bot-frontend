@@ -40,6 +40,7 @@
   border: 0;
   border-radius: 20px;
   transition: 0.5s all ease;
+  user-select: none;
 }
 
 .item .price.active {
@@ -54,10 +55,12 @@
 .item .price__minus {
   display: inline;
   cursor: pointer;
+  user-select: none;
 }
 .item .price__plus {
   display: inline;
   cursor: pointer;
+  user-select: none;
 }
 
 .item .total__count {
