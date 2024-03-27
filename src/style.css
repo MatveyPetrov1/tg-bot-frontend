@@ -22,7 +22,7 @@ a {
 
 .card__button {
   height: 100px;
-  width: 1000px;
+  width: 100vw;
   background-color: #000;
   position: fixed;
   bottom: 0;
@@ -41,11 +41,11 @@ a {
 @keyframes card-button {
   0% {
     opacity: 0;
-    transform: scaleY(300px);
+    transform: translateY(300px);
   }
   100% {
     opacity: 1;
-    transform: scaleY(0px);
+    transform: translateY(0px);
   }
 }
 
