@@ -1,19 +1,22 @@
 import React from "react";
-import "./cartlist.css";
+import { ListItem } from "../../Home/ListItem/Listitem";
 import { useSelector } from "react-redux";
-import { Item } from "../Item/Item";
 import { Link } from "react-router-dom";
+import { BuyButton } from "../../Form/BuyButton";
+import { NotFound } from "../NotFound/NotFound";
+import "./cartlist.css";
 
 export const CartList = () => {
   const { items } = useSelector((state) => state.cart);
   return items.length > 0 ? (
     <>
       <div>
+        <BuyButton text="Заказать на" />
         <h2 className="cartlist__title">
           Проверьте правильность вашей корзины 😋
         </h2>
         {items.map((obj) => (
-          <Item {...obj} />
+          <ListItem {...obj} />
         ))}
         <Link className="cartlist__button" to="/">
           Вернуться на главную
@@ -21,9 +24,6 @@ export const CartList = () => {
       </div>
     </>
   ) : (
-    <div className="cartlist__notfound__wrapper">
-      <h2>Ваша корзина пуста</h2>
-      <Link to="/">Вернуться на главную</Link>
-    </div>
+    <NotFound />
   );
 };

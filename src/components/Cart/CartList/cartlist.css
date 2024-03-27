@@ -1,0 +1,9 @@
+.cartlist__title {
+  display: flex;
+  justify-content: center;
+}
+
+.cartlist__button {
+  display: flex;
+  justify-content: center;
+}

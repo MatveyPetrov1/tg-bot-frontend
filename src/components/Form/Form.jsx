@@ -1,6 +1,9 @@
 import React from "react";
 import "./form.css";
 import { Link } from "react-router-dom";
+import { PostButton } from "./PostButton";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const tg = window.Telegram.WebApp;
 
@@ -11,37 +14,7 @@ export const Form = () => {
     street: "Кирова 30/1",
   });
 
-  const onSendData = React.useCallback(() => {
-    const data = {
-      name: form.name,
-      number: form.number,
-      street: form.street,
-    };
-
-    tg.sendData(data);
-  }, [form]);
-
-  React.useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData]);
-
-  React.useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Сделать заказ",
-    });
-  }, []);
-
-  React.useEffect(() => {
-    if (!form.name || !form.number) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-    }
-  }, [form.name, form.number]);
+  const { totalPrice, items } = useSelector((state) => state.cart);
 
   const onChangeName = (e) => {
     setForm({ ...form, name: e.target.value });
@@ -55,31 +28,49 @@ export const Form = () => {
     setForm({ ...form, street: e.target.value });
   };
 
+  const onSendData = async () => {
+    await axios.post("http://localhost:4444/buy", {
+      name: form.name,
+      number: form.number,
+      street: form.street,
+      items,
+    });
+    tg.close();
+  };
+
   return (
-    <div className="form">
-      <div className="wrapper">
-        <h2 className="title">Введите ваши данные</h2>
-        <input
-          value={form.name}
-          type="text"
-          placeholder="Имя"
-          onChange={onChangeName}
-        />
-        <input
-          value={form.number}
-          type="text"
-          placeholder="Номер телефона"
-          onChange={onChangeNumber}
-        />
-        <h2 className="title">Адрес самомвывоза</h2>
-        <select onChange={onChangeStreet}>
-          <option value="Кирова 30/1">Кирова 30/1</option>
-          <option value="Кирова 30/2">Кирова 30/2</option>
-        </select>
-        <div className="link__wrapper">
-          <Link to="/">Вернуться назад</Link>
+    <>
+      <PostButton
+        onSendData={onSendData}
+        text={`Заказать на ${totalPrice} р.`}
+      />
+      <div className="container">
+        <div className="form">
+          <div className="wrapper">
+            <h2 className="title">Введите ваши данные</h2>
+            <input
+              value={form.name}
+              type="text"
+              placeholder="Имя"
+              onChange={onChangeName}
+            />
+            <input
+              value={form.number}
+              type="text"
+              placeholder="Номер телефона"
+              onChange={onChangeNumber}
+            />
+            <h2 className="title">Адрес самомвывоза</h2>
+            <select onChange={onChangeStreet}>
+              <option value="Кирова 30/1">Кирова 30/1</option>
+              <option value="Кирова 30/2">Кирова 30/2</option>
+            </select>
+            <div className="link__wrapper">
+              <Link to="/cart">Вернуться назад</Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

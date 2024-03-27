@@ -1,9 +1,9 @@
 import React from "react";
-import "./item.css";
+import "./listitem.css";
 import { useSelector, useDispatch } from "react-redux";
-import { plusItem, minusItem } from "../../redux/slices/cartSlice";
+import { plusItem, minusItem } from "../../../redux/slices/cartSlice";
 
-export const Item = ({ title, price, imageUrl, composition }) => {
+export const ListItem = ({ title, price, imageUrl, composition }) => {
   const { items } = useSelector((state) => state.cart);
   const isFinded =
     items.length > 0 ? items.find((obj) => obj.title === title) : false;

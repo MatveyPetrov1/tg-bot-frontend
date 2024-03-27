@@ -5,15 +5,17 @@
   justify-content: center;
   margin-bottom: 10px;
   padding: 20px 0;
+  border-radius: 20px;
 }
 
 .item .image__wrapper {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
   margin: 0 auto;
+  margin-bottom: 5px;
 }
 
 .item img {
@@ -24,6 +26,8 @@
 
 .item .title {
   text-align: center;
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .item .composition {

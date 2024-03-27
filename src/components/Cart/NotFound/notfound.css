@@ -1,19 +1,9 @@
-.cartlist__title {
-  display: flex;
-  justify-content: center;
-}
-
 .cartlist__notfound__wrapper h2 {
   display: flex;
   justify-content: center;
 }
 
 .cartlist__notfound__wrapper a {
-  display: flex;
-  justify-content: center;
-}
-
-.cartlist__button {
   display: flex;
   justify-content: center;
 }
