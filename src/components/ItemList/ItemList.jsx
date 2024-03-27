@@ -2,11 +2,9 @@ import React from "react";
 import "./itemlist.css";
 import { Item } from "../Item/Item";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 export const ItemList = () => {
   const [items, setItems] = React.useState();
-  const { totalPrice } = useSelector((state) => state.cart);
 
   React.useEffect(() => {
     const fetchItems = async () => {
