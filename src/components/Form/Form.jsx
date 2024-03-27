@@ -13,6 +13,7 @@ export const Form = () => {
     number: "",
     street: "Кирова 30/1",
   });
+  const [isError, setIsError] = React.useState(false);
 
   const { totalPrice, items } = useSelector((state) => state.cart);
 
@@ -29,13 +30,23 @@ export const Form = () => {
   };
 
   const onSendData = async () => {
-    await axios.post("http://localhost:4444/buy", {
-      name: form.name,
-      number: form.number,
-      street: form.street,
-      items,
-    });
-    tg.close();
+    try {
+      const { data } = await axios.post("http://localhost:4444/buy", {
+        name: form.name,
+        number: form.number,
+        street: form.street,
+        items,
+      });
+
+      if (data.message === "success") {
+        setForm({ name: "", number: "" });
+        tg.close();
+      } else {
+        setIsError(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -65,6 +76,7 @@ export const Form = () => {
               <option value="Кирова 30/1">Кирова 30/1</option>
               <option value="Кирова 30/2">Кирова 30/2</option>
             </select>
+            {isError && <div>Ошибка</div>}
             <div className="link__wrapper">
               <Link to="/cart">Вернуться назад</Link>
             </div>
