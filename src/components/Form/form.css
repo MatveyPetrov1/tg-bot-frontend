@@ -66,3 +66,25 @@
   display: inline-block;
   margin: 0 auto;
 }
+
+.input__number {
+  position: relative;
+}
+
+.input__name {
+  position: relative;
+}
+
+.input__number h2 {
+  position: absolute;
+  right: 0;
+  color: red;
+  top: 0;
+}
+
+.input__name h2 {
+  position: absolute;
+  right: 0;
+  color: red;
+  top: 0;
+}
