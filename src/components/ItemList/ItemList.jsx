@@ -20,7 +20,6 @@ export const ItemList = () => {
 
   return (
     <div className="itemlist">
-      <div>{totalPrice}</div>
       {items && items.map((obj) => <Item key={obj.title} {...obj} />)}
 
       <div className="link__wrapper"></div>

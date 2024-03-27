@@ -21,17 +21,21 @@ a {
 }
 
 .card__button {
-  height: 100px;
-  width: 100vw;
+  height: 50px;
+  width: 100px;
+  border-radius: 25px;
   background-color: #000;
   position: fixed;
   bottom: 0;
+  right: 0;
+  margin-bottom: 15px;
+  margin-right: 15px;
   z-index: 1;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 22px;
   transition: 0.5s all ease;
   animation: 0.5s card-button;
   cursor: pointer;

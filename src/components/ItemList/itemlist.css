@@ -1,5 +1,7 @@
 .itemlist {
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  column-gap: 10px;
 }
 
 .itemlist a {
