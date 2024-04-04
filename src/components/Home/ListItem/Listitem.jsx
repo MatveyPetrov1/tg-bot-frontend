@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 export const ListItem = ({ title, price, imageUrl, composition, size }) => {
   const { items } = useSelector((state) => state.cart);
 
-  const [sizeIsActive, setSizeIsActive] = React.useState(0);
+  const [sizeIndex, setSizeIndex] = React.useState(0);
+  const [sizeValue, setSizeValue] = React.useState("");
 
   const isFinded =
     items.length > 0
-      ? items.find(
-          (obj) => obj.title === title && obj.sizeIsActive === sizeIsActive
-        )
+      ? items.find((obj) => obj.title === title && obj.sizeIndex === sizeIndex)
       : false;
 
   const dispatch = useDispatch();
@@ -21,21 +20,23 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
   const onClickPlus = () => {
     const product = {
       title,
-      price: price[sizeIsActive],
+      price: price[sizeIndex],
       imageUrl,
       composition,
-      sizeIsActive,
+      sizeIndex,
+      sizeValue,
       count: 1,
     };
     dispatch(plusItem(product));
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ title, sizeIsActive }));
+    dispatch(minusItem({ title, sizeIndex }));
   };
 
-  const onClickSize = (i) => {
-    setSizeIsActive(i);
+  const onClickSize = (value, index) => {
+    setSizeValue(value);
+    setSizeIndex(index);
   };
 
   return (
@@ -50,9 +51,9 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
           <div className="size__block">
             {size.map((str, index) => (
               <Link
-                className={sizeIsActive === index ? "active" : ""}
+                className={sizeIndex === index ? "active" : ""}
                 key={str}
-                onClick={() => onClickSize(index)}
+                onClick={() => onClickSize(str, index)}
               >
                 {str}
               </Link>
@@ -76,7 +77,7 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
             )}
 
             <div className="price__plus" onClick={onClickPlus}>
-              {price[sizeIsActive]} руб. +
+              {price[sizeIndex]} руб. +
             </div>
           </div>
         </div>

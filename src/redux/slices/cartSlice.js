@@ -13,7 +13,7 @@ const cartSlice = createSlice({
       const findItem = state.items.find(
         (obj) =>
           obj.title === action.payload.title &&
-          obj.sizeIsActive === action.payload.sizeIsActive
+          obj.sizeIndex === action.payload.sizeIndex
       );
       if (findItem) {
         findItem.count++;
@@ -28,13 +28,12 @@ const cartSlice = createSlice({
       const findItem = state.items.find(
         (obj) =>
           obj.title === action.payload.title &&
-          obj.sizeIsActive === action.payload.sizeIsActive
+          obj.sizeIndex === action.payload.sizeIndex
       );
       if (findItem.count === 1) {
         state.items = state.items.filter(
           (obj) =>
-            obj.title !== findItem.title ||
-            obj.sizeIsActive !== findItem.sizeIsActive
+            obj.title !== findItem.title || obj.sizeIndex !== findItem.sizeIndex
         );
       } else {
         findItem.count--;
