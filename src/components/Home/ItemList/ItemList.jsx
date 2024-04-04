@@ -7,25 +7,29 @@ import { useSelector } from "react-redux";
 export const ItemList = () => {
   const [items, setItems] = React.useState();
 
-  const { searchValue } = useSelector((state) => state.filter);
+  const { searchValue, category } = useSelector((state) => state.filter);
 
-  const fetchItems = async () => {
+  const fetchItems = React.useCallback(async () => {
+    const categories = category > 0 ? `?category=${category}` : ``;
+
     const { data } = await axios.get(
-      "https://6f04cd2d94cdecc9.mokky.dev/items"
+      `https://6f04cd2d94cdecc9.mokky.dev/items${categories}`
     );
     setItems(data);
-  };
+  }, [category]);
 
   React.useEffect(() => {
     fetchItems();
-  }, []);
+  }, [fetchItems]);
 
   const filteredItems = () => {
     return (
       items &&
       items
-        .filter((obj) => obj.title.toLowerCase().includes(searchValue))
-        .map((obj) => <ListItem key={obj.title} {...obj} />)
+        .filter((obj) =>
+          obj.title.toLowerCase().includes(searchValue.toLowerCase())
+        )
+        .map((obj, index) => <ListItem key={index} {...obj} />)
     );
   };
 

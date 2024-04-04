@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const GoToCartButton = () => {
-  const { totalPrice } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector((state) => state.cart);
   return (
     totalPrice > 0 && (
       <Link to="/cart" className="cart__button">

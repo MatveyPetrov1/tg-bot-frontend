@@ -11,7 +11,9 @@ const cartSlice = createSlice({
   reducers: {
     plusItem(state, action) {
       const findItem = state.items.find(
-        (obj) => obj.title === action.payload.title
+        (obj) =>
+          obj.title === action.payload.title &&
+          obj.sizeIsActive === action.payload.sizeIsActive
       );
       if (findItem) {
         findItem.count++;
@@ -24,10 +26,16 @@ const cartSlice = createSlice({
     },
     minusItem(state, action) {
       const findItem = state.items.find(
-        (obj) => obj.title === action.payload.title
+        (obj) =>
+          obj.title === action.payload.title &&
+          obj.sizeIsActive === action.payload.sizeIsActive
       );
       if (findItem.count === 1) {
-        state.items = state.items.filter((obj) => obj.title !== findItem.title);
+        state.items = state.items.filter(
+          (obj) =>
+            obj.title !== findItem.title ||
+            obj.sizeIsActive !== findItem.sizeIsActive
+        );
       } else {
         findItem.count--;
       }

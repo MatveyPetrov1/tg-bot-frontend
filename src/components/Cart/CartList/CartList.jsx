@@ -8,6 +8,7 @@ import "./cartlist.css";
 
 export const CartList = () => {
   const { items } = useSelector((state) => state.cart);
+  console.log(items);
   return items.length > 0 ? (
     <>
       <div>
