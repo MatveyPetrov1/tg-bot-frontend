@@ -41,7 +41,6 @@
   max-width: 250px;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 15px;
   font-size: 12px;
   animation: composition 1s;
   max-width: 150px;
@@ -121,6 +120,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 20px;
 }
 
 .size__block {
@@ -223,4 +223,43 @@
 .size__block a.active {
   background-color: #000;
   color: #fff;
+}
+
+@media (max-width: 450px) {
+  .item .image__wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .item .title {
+    font-size: 12px;
+  }
+
+  .composition__block {
+    margin-bottom: 15px;
+  }
+
+  .composition__block button {
+    font-size: 12px;
+  }
+
+  .composition__block a {
+    font-size: 12px;
+  }
+
+  .item .composition {
+    font-size: 10px;
+  }
+
+  .item .price {
+    font-size: 13px;
+  }
+
+  .item .count__block {
+    font-size: 24px;
+  }
+
+  .size__block a {
+    font-size: 12px;
+  }
 }
