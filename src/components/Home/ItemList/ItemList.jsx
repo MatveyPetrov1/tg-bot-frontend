@@ -7,16 +7,18 @@ import { useSelector } from "react-redux";
 export const ItemList = () => {
   const [items, setItems] = React.useState();
 
-  const { searchValue, category } = useSelector((state) => state.filter);
+  const { searchValue, category, sortBy } = useSelector(
+    (state) => state.filter
+  );
 
   const fetchItems = React.useCallback(async () => {
-    const categories = category > 0 ? `?category=${category}` : ``;
+    const categories = category > 0 ? `category=${category}` : ``;
 
     const { data } = await axios.get(
-      `https://6f04cd2d94cdecc9.mokky.dev/items${categories}`
+      `https://6f04cd2d94cdecc9.mokky.dev/items?${categories}&${sortBy}`
     );
     setItems(data);
-  }, [category]);
+  }, [category, sortBy]);
 
   React.useEffect(() => {
     fetchItems();

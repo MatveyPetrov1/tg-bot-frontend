@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   searchValue: "",
   category: 0,
+  sortBy: "",
 };
 
 const searchSlice = createSlice({
@@ -15,8 +16,11 @@ const searchSlice = createSlice({
     setCategory(state, action) {
       state.category = action.payload;
     },
+    setSort(state, action) {
+      state.sortBy = action.payload;
+    },
   },
 });
 
-export const { setSearchValue, setCategory } = searchSlice.actions;
+export const { setSearchValue, setCategory, setSort } = searchSlice.actions;
 export default searchSlice.reducer;

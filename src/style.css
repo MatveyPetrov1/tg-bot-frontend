@@ -26,6 +26,12 @@ a {
   padding: 20px 0;
 }
 
+.filter__block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @keyframes card-button {
   0% {
     opacity: 0;
