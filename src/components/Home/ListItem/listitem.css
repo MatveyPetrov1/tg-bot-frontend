@@ -41,7 +41,7 @@
   max-width: 250px;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 12px;
   animation: composition 1s;
   max-width: 150px;
@@ -134,7 +134,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .composition__block button {
