@@ -32,15 +32,16 @@
 
 .item .title {
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 12px;
+  max-width: 200px;
 }
 
 .item .composition {
   max-width: 250px;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 12px;
   animation: composition 1s;
   max-width: 150px;
@@ -66,7 +67,7 @@
   border-radius: 20px;
   transition: 0.5s all ease;
   user-select: none;
-  font-size: 15px;
+  font-size: 14px;
   align-items: center;
 }
 
@@ -91,14 +92,34 @@
   margin-left: 5px;
 }
 
-.item .total__count {
-  display: inline;
-  font-size: 15px;
+.item .count__block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 27px;
+  animation: count 1s;
+}
+
+@keyframes count {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -106,14 +127,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .composition__block {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .composition__block button {
@@ -125,7 +146,7 @@
   font-family: "Montserrat", sans-serif;
   padding: 5px 10px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   transition: 0.5s all ease;
   cursor: pointer;
 }
@@ -137,7 +158,7 @@
   background-color: #fff;
   color: #000;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .composition__block a:hover {
@@ -167,7 +188,7 @@
   background-color: #fff;
   color: #000;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .size__block a.double__size__1 {

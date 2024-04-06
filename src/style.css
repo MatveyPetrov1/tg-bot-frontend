@@ -22,6 +22,10 @@ a {
   padding: 0 30px;
 }
 
+.App {
+  padding: 20px 0;
+}
+
 @keyframes card-button {
   0% {
     opacity: 0;

@@ -54,6 +54,11 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
       <div className="wrapper">
         <div className="image__wrapper">
           <img src={imageUrl} alt="item_image" />
+          <div>
+            {isFinded && isFinded.count > 0 && (
+              <div className="count__block">{isFinded.count + " шт."}</div>
+            )}
+          </div>
         </div>
         <h3 className="title">{title}</h3>
         {size.length === 1 && composition && (
@@ -126,9 +131,9 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
           ""
         )}
         <div className="bottom">
-          <div className="total__count">
+          {/* <div className="total__count">
             {isFinded && isFinded.count > 0 && isFinded.count + " шт."}
-          </div>
+          </div> */}
 
           <div
             className={
@@ -136,24 +141,6 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
             }
           >
             {isFinded && isFinded.count > 0 && (
-              //           <svg
-              //             fill="#fff"
-              //             version="1.1"
-              //             id="Capa_1"
-              //             xmlns="http://www.w3.org/2000/svg"
-              //             width="15px"
-              //             height="10px"
-              //             viewBox="0 0 83 83"
-              //             onClick={onClickMinus}
-              //             className="price__minus"
-              //           >
-              //             <g>
-              //               <path
-              //                 d="M81,36.166H2c-1.104,0-2,0.896-2,2v6.668c0,1.104,0.896,2,2,2h79c1.104,0,2-0.896,2-2v-6.668
-              // C83,37.062,82.104,36.166,81,36.166z"
-              //               />
-              //             </g>
-              //           </svg>
               <svg
                 fill="#fff"
                 width="15px"
