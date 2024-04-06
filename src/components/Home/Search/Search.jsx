@@ -17,7 +17,7 @@ export const Search = () => {
       type="text"
       onChange={onChangeInput}
       value={searchValue}
-      placeholder="Введите что-нибудь..."
+      placeholder="Искать что-нибудь..."
     />
   );
 };

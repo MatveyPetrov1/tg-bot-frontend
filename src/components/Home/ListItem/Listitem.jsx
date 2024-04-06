@@ -52,17 +52,55 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
         </div>
         <h3 className="title">{title}</h3>
         <h6 className="composition">{composition}</h6>
-        {size && (
+        {size.length === 1 ? (
           <div className="size__block">
-            {size.map((str, index) => (
-              <Link
-                className={sizeIndex === index ? "active" : ""}
-                key={str}
-                onClick={() => onClickSize(str, index)}
-              >
-                {str}
-              </Link>
-            ))}
+            <Link className="active">{size[0]}</Link>
+          </div>
+        ) : size.length === 2 ? (
+          <div className="size__block">
+            <Link
+              className={
+                sizeIndex === 0 ? "active double__size__1" : "double__size__1"
+              }
+              onClick={() => onClickSize(size[0], 0)}
+            >
+              {size[0]}
+            </Link>
+            <Link
+              className={
+                sizeIndex === 1 ? "active double__size__2" : "double__size__2"
+              }
+              onClick={() => onClickSize(size[1], 1)}
+            >
+              {size[1]}
+            </Link>
+          </div>
+        ) : (
+          <div className="size__block">
+            <Link
+              className={
+                sizeIndex === 0 ? "active triple__size__1" : "triple__size__1"
+              }
+              onClick={() => onClickSize(size[0], 0)}
+            >
+              {size[0]}
+            </Link>
+            <Link
+              className={
+                sizeIndex === 1 ? "active triple__size__2" : "triple__size__2"
+              }
+              onClick={() => onClickSize(size[1], 1)}
+            >
+              {size[1]}
+            </Link>
+            <Link
+              className={
+                sizeIndex === 2 ? "active triple__size__3" : "triple__size__3"
+              }
+              onClick={() => onClickSize(size[2], 2)}
+            >
+              {size[2]}
+            </Link>
           </div>
         )}
         <div className="bottom">
