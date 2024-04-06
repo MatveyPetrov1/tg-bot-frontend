@@ -1,9 +1,9 @@
 import React from "react";
-import { ListItem } from "../../Home/ListItem/Listitem";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { BuyButton } from "../../Form/BuyButton";
+import { BuyButton } from "../BuyButton/BuyButton";
 import { NotFound } from "../NotFound/NotFound";
+import { CartItem } from "../CartItem/CartItem";
 import "./cartlist.css";
 
 export const CartList = () => {
@@ -17,7 +17,7 @@ export const CartList = () => {
           Проверьте правильность вашей корзины 😋
         </h2>
         {items.map((obj) => (
-          <ListItem {...obj} />
+          <CartItem {...obj} />
         ))}
         <Link className="cartlist__button" to="/">
           Вернуться на главную

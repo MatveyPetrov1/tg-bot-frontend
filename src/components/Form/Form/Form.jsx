@@ -1,7 +1,7 @@
 import React from "react";
 import "./form.css";
 import { Link } from "react-router-dom";
-import { PostButton } from "./PostButton";
+import { PostButton } from "../PostButton/PostButton";
 import { useSelector } from "react-redux";
 import axios from "axios";
 

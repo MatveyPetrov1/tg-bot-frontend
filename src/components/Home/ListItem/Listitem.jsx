@@ -26,6 +26,7 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
       sizeIndex,
       sizeValue,
       count: 1,
+      size,
     };
     dispatch(plusItem(product));
   };
@@ -38,6 +39,10 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
     setSizeValue(value);
     setSizeIndex(index);
   };
+
+  React.useEffect(() => {
+    setSizeValue(`${size[sizeIndex]}`);
+  }, [size, sizeIndex]);
 
   return (
     <div className="item">

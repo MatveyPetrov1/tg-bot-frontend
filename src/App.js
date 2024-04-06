@@ -1,6 +1,6 @@
 import React from "react";
 import { Home } from "./pages/Home";
-import { Form } from "./components/Form/Form";
+import { Form } from "./components/Form/Form/Form";
 import { Cart } from "./pages/Cart";
 import { Routes, Route } from "react-router-dom";
 import "./style.css";
