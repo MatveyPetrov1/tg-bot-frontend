@@ -131,10 +131,6 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
           ""
         )}
         <div className="bottom">
-          {/* <div className="total__count">
-            {isFinded && isFinded.count > 0 && isFinded.count + " шт."}
-          </div> */}
-
           <div
             className={
               isFinded && isFinded.count > 0 ? "price active" : "price"

@@ -80,6 +80,7 @@
   cursor: pointer;
   margin-right: 7px;
 }
+
 .item .price__plus {
   display: inline;
   cursor: pointer;
@@ -261,5 +262,62 @@
 
   .size__block a {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .item .image__wrapper {
+    width: 125px;
+    height: 125px;
+  }
+
+  .item .bottom {
+    margin-top: 12px;
+  }
+
+  .item .title {
+    font-size: 10px;
+  }
+
+  .composition__block {
+    margin-bottom: 10px;
+  }
+
+  .composition__block button {
+    font-size: 10px;
+  }
+
+  .composition__block a {
+    font-size: 9px;
+  }
+
+  .item .composition {
+    font-size: 9px;
+  }
+
+  .item .price {
+    font-size: 11px;
+  }
+
+  .item .count__block {
+    font-size: 24px;
+  }
+
+  .size__block a {
+    font-size: 10px;
+  }
+
+  .price__minus {
+    width: 13px;
+    height: 13px;
+  }
+
+  .item .price__plus__img {
+    width: 13px;
+    height: 13px;
+  }
+
+  .item {
+    padding: 15px 0;
   }
 }
