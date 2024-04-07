@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 50%);
   column-gap: 10px;
+  margin-bottom: 10px;
 }
 
 .itemlist a {
@@ -11,4 +12,27 @@
 .itemlist .link__wrapper {
   display: flex;
   justify-content: center;
+}
+
+.main__itemlist {
+  text-align: center;
+}
+
+.main__itemlist p {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 450px) {
+  .main__itemlist p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main__itemlist p {
+    font-size: 18px;
+  }
 }
