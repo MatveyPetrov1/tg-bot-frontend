@@ -12,10 +12,10 @@ export const Sort = () => {
   const onChangeSort = (e) => {
     const index = sortArr.indexOf(e.target.value);
     if (index === 1) {
-      const value = "sortBy=defaultPrice";
+      const value = "sortBy=-defaultPrice";
       dispatch(setSort(value));
     } else if (index === 2) {
-      const value = "sortBy=-defaultPrice";
+      const value = "sortBy=defaultPrice";
       dispatch(setSort(value));
     } else {
       const value = "";

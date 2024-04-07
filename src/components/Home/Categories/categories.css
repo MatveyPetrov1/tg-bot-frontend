@@ -13,6 +13,7 @@ li {
   font-size: 13px;
   font-family: "Montserrat";
   font-weight: 500;
+  border-radius: 10px;
 }
 
 .categories__item {
