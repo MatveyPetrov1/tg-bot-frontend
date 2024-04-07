@@ -5,6 +5,7 @@ import { BuyButton } from "../BuyButton/BuyButton";
 import { NotFound } from "../NotFound/NotFound";
 import { CartItem } from "../CartItem/CartItem";
 import "./cartlist.css";
+import "../../Home/ItemList/itemlist.css";
 
 export const CartList = () => {
   const { items } = useSelector((state) => state.cart);
@@ -13,15 +14,17 @@ export const CartList = () => {
     <>
       <div>
         <BuyButton text="Заказать на" />
-        <h2 className="cartlist__title">
-          Проверьте правильность вашей корзины 😋
-        </h2>
-        {items.map((obj) => (
-          <CartItem {...obj} />
-        ))}
-        <Link className="cartlist__button" to="/">
-          Вернуться на главную
-        </Link>
+        <h2 className="cartlist__title">Ваша корзина 🗑️</h2>
+        <div className="itemlist">
+          {items.map((obj) => (
+            <CartItem {...obj} />
+          ))}
+        </div>
+        <div className="cartlist__button__wrapper">
+          <Link className="cartlist__button" to="/">
+            Вернуться на главную 👈
+          </Link>
+        </div>
       </div>
     </>
   ) : (

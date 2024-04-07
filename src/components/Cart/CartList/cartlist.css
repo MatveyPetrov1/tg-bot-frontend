@@ -1,9 +1,46 @@
 .cartlist__title {
+  text-align: center;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 6px 0;
+}
+
+.cartlist__button {
+  background-color: #fff;
+  color: #000;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  border: 1px solid #000;
+  margin-top: 25px;
+}
+
+.cartlist__button__wrapper {
   display: flex;
   justify-content: center;
 }
 
-.cartlist__button {
-  display: flex;
-  justify-content: center;
+@media (max-width: 450px) {
+  .cartlist__title {
+    font-size: 16px;
+  }
+
+  .cartlist__button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cartlist__title {
+    font-size: 16px;
+  }
+
+  .cartlist__button {
+    font-size: 12px;
+  }
 }

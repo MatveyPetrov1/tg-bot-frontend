@@ -8,7 +8,7 @@ export const GoToCartButton = () => {
   return (
     totalPrice > 0 && (
       <Link to="/cart" className="cart__button">
-        {totalPrice} ₽.
+        {totalPrice} ₽
       </Link>
     )
   );

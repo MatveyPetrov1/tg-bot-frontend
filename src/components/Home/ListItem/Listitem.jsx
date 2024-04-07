@@ -1,8 +1,8 @@
 import React from "react";
-import "./listitem.css";
 import { useSelector, useDispatch } from "react-redux";
 import { plusItem, minusItem } from "../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
+import "./listitem.css";
 
 export const ListItem = ({ title, price, imageUrl, composition, size }) => {
   const { items } = useSelector((state) => state.cart);
@@ -153,7 +153,7 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
             )}
 
             <div className="price__plus" onClick={onClickPlus}>
-              {price[sizeIndex]} руб.
+              {price[sizeIndex]} ₽
               <svg
                 fill={isFinded && isFinded.count > 0 ? "#fff" : "#000"}
                 height="15px"

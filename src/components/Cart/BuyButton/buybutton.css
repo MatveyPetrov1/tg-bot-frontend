@@ -1,17 +1,20 @@
 .buybutton {
   position: fixed;
   bottom: 0;
-  width: 100vw;
   background-color: #000;
   color: #fff;
-  font-size: 27px;
-  left: 0;
+  font-size: 20px;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
+  padding: 15px 20px;
   transition: 0.5s all ease;
   animation: 0.5s buy-button;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-radius: 25px;
+  margin: 0 10px 10px 0;
 }
 
 @keyframes buy-button {
@@ -28,4 +31,16 @@
 .buybutton:hover {
   background-color: #fff;
   color: #000;
+}
+
+@media (max-width: 450px) {
+  .buybutton {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .buybutton {
+    font-size: 14px;
+  }
 }

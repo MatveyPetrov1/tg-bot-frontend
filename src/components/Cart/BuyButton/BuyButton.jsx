@@ -7,7 +7,7 @@ export const BuyButton = ({ text }) => {
   const { totalPrice } = useSelector((state) => state.cart);
   return (
     <Link to="/form" className="buybutton">
-      {text} {totalPrice}р.
+      {text} {totalPrice} ₽
     </Link>
   );
 };

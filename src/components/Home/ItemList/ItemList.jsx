@@ -83,13 +83,13 @@ export const ItemList = () => {
           ? "Ничего не найдено"
           : items && (
               <div className="main__itemlist">
-                {getItem("Шаурма", shawarma)}
-                {getItem("Завертоны", zaverton)}
-                {getItem("Кофе", coffee)}
-                {getItem("Горячие напитки", hotDrinks)}
-                {getItem("Лимонады", lemonade)}
-                {getItem("Смузи", smoothie)}
-                {getItem("Молочные коктейли", milkShake)}
+                {getItem("Шаурма 🌯", shawarma)}
+                {getItem("Завертоны 🌯", zaverton)}
+                {getItem("Кофе ☕", coffee)}
+                {getItem("Горячие напитки ☕", hotDrinks)}
+                {getItem("Лимонады 🍋", lemonade)}
+                {getItem("Смузи 🍹", smoothie)}
+                {getItem("Молочные коктейли 🥤", milkShake)}
               </div>
             )}
       </>

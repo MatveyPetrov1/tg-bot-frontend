@@ -88,3 +88,14 @@
   color: red;
   top: 0;
 }
+
+.main__title {
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px 5px;
+  font-family: "Montserrat";
+  font-weight: 500;
+  border-radius: 10px;
+}

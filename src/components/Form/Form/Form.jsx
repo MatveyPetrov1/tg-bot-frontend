@@ -74,7 +74,12 @@ export const Form = () => {
       <div className="container">
         <div className="form">
           <div className="wrapper">
-            <h2 className="title">Введите ваши данные</h2>
+            <h1 className="main__title">
+              Спасибо, что кушаете у нас 🥰
+              <br />
+              Осталось совсем немного 😊
+            </h1>
+            <h2 className="title">Заполните информацию</h2>
             <div className="input__name">
               <input
                 value={form.name}
