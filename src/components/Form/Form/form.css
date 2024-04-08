@@ -1,36 +1,66 @@
 .form {
   max-width: 100%;
-  max-height: 50lvh;
   display: flex;
   justify-content: center;
   background: rgb(146, 192, 57);
   color: #000;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px 0;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .form .wrapper {
   width: 100%;
-  padding: 10px 0;
 }
 
 .form input {
   border: 0;
   color: #000000;
   padding: 5px;
-  font-size: 18px;
+  font-size: 15px;
   appearance: none;
   outline: none;
   margin-bottom: 10px;
   background-color: #fff;
-  width: 100%;
+  width: 70%;
   height: 35px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.form textarea {
+  border: 0;
+  color: #000000;
+  padding: 5px;
+  font-size: 15px;
+  appearance: none;
+  outline: none;
+  margin-bottom: 10px;
+  background-color: #fff;
+  height: 35px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  width: 70%;
+  font-weight: 500;
 }
 
 .form select {
-  width: 100%;
+  width: 70%;
   border: 0;
   outline: 0;
   height: 35px;
-  font-size: 18px;
+  font-size: 15px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.form .select__wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .form button {
@@ -45,22 +75,25 @@
 }
 
 .form .title {
-  font-size: 23px;
+  font-size: 17px;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 30px 0px 15px 0;
 }
 
-.form .link__wrapper {
+.link__wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+}
+
+.form .link__wrapper a {
+  font-size: 18px;
 }
 
 .form a {
   text-decoration: none;
   color: #000;
   border: 1px solid #000;
-  padding: 10px;
+  padding: 7px 10px;
   font-size: 20px;
   background-color: #fff;
   display: inline-block;
@@ -69,33 +102,110 @@
 
 .input__number {
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.input__number input {
+  margin-bottom: 0px;
+}
+
+.input__comment textarea {
+  height: 70px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .input__name {
+  display: flex;
+  justify-content: center;
+}
+
+.input__container {
   position: relative;
 }
 
-.input__number h2 {
-  position: absolute;
-  right: 0;
+.input__container h2 {
   color: red;
-  top: 0;
+  font-size: 16px;
+  text-align: center;
+  animation: 0.7s fade-up;
 }
 
-.input__name h2 {
-  position: absolute;
-  right: 0;
-  color: red;
-  top: 0;
+.input__container .name__error {
+  margin-bottom: 10px;
+}
+
+.input__container .number__error {
+  margin-top: 10px;
 }
 
 .main__title {
   color: #000;
-  background-color: #fff;
   text-align: center;
-  font-size: 18px;
-  padding: 5px 5px;
+  font-size: 16px;
   font-family: "Montserrat";
   font-weight: 500;
-  border-radius: 10px;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@media (max-width: 450px) {
+  .main__title {
+    font-size: 12px;
+  }
+
+  .form .title {
+    font-size: 13px;
+  }
+
+  .form input {
+    font-size: 11px;
+  }
+
+  .form select {
+    font-size: 11px;
+  }
+
+  .form textarea {
+    font-size: 11px;
+  }
+
+  .input__container h2 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main__title {
+    font-size: 10px;
+  }
+
+  .form .title {
+    font-size: 11px;
+  }
+
+  .form input {
+    font-size: 9px;
+  }
+
+  .form select {
+    font-size: 9px;
+  }
+
+  .form textarea {
+    font-size: 9px;
+  }
+
+  .input__container h2 {
+    font-size: 10px;
+  }
 }

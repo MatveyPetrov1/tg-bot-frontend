@@ -3,7 +3,7 @@
   bottom: 0;
   background-color: #000;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   right: 0;
   display: flex;
   justify-content: center;
@@ -14,6 +14,13 @@
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-radius: 25px;
+  margin: 0 10px 10px 0;
+}
+
+.homebutton {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   margin: 0 10px 10px 0;
 }
 

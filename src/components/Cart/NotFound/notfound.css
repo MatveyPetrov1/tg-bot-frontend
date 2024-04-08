@@ -18,13 +18,14 @@
 .cartlist__notfound__wrapper h2 {
   margin-bottom: 15px;
   color: #fff;
-  font-size: 30px;
+  font-size: 26px;
   display: flex;
   justify-content: center;
 }
 
 .cartlist__notfound__wrapper .cartlist__notfound__forbuy {
-  font-size: 26px;
+  font-size: 22px;
+  margin-bottom: 20px;
 }
 
 .cartlist__notfound__wrapper a {
@@ -36,13 +37,13 @@
   .cartlist__notfound__wrapper h2 {
     margin-bottom: 15px;
     color: #fff;
-    font-size: 27px;
+    font-size: 22px;
     display: flex;
     justify-content: center;
   }
 
   .cartlist__notfound__wrapper .cartlist__notfound__forbuy {
-    font-size: 23px;
+    font-size: 18px;
   }
 }
 
@@ -50,12 +51,12 @@
   .cartlist__notfound__wrapper h2 {
     margin-bottom: 15px;
     color: #fff;
-    font-size: 24px;
+    font-size: 18px;
     display: flex;
     justify-content: center;
   }
 
   .cartlist__notfound__wrapper .cartlist__notfound__forbuy {
-    font-size: 20px;
+    font-size: 14px;
   }
 }

@@ -15,9 +15,13 @@
   padding: 7px 10px;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   border: 1px solid #000;
   margin-top: 25px;
+}
+
+.cartlist__button.notfound {
+  margin-top: 0px;
 }
 
 .cartlist__button__wrapper {
@@ -37,10 +41,10 @@
 
 @media (max-width: 400px) {
   .cartlist__title {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .cartlist__button {
-    font-size: 12px;
+    font-size: 10px;
   }
 }

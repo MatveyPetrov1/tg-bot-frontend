@@ -1,6 +1,6 @@
 .cart__button {
-  height: 50px;
-  width: 100px;
+  height: 45px;
+  width: 90px;
   border-radius: 25px;
   background-color: #000;
   position: fixed;
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   transition: 0.5s all ease;
   animation: 0.5s card-button;
   cursor: pointer;
@@ -29,10 +29,18 @@
   color: #000;
 }
 
+@media (max-width: 450px) {
+  .cart__button {
+    width: 80px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 400px) {
   .cart__button {
-    width: 85px;
-    height: 45px;
-    font-size: 18px;
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
   }
 }

@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 export const BuyButton = ({ text }) => {
   const { totalPrice } = useSelector((state) => state.cart);
   return (
-    <Link to="/form" className="buybutton">
-      {text} {totalPrice} ₽
-    </Link>
+    <>
+      <Link to="/form" className="buybutton">
+        {text} {totalPrice} ₽
+      </Link>
+    </>
   );
 };

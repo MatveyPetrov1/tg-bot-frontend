@@ -21,7 +21,7 @@ export const CartList = () => {
           ))}
         </div>
         <div className="cartlist__button__wrapper">
-          <Link className="cartlist__button" to="/">
+          <Link to="/" className="cartlist__button ">
             Вернуться на главную 👈
           </Link>
         </div>

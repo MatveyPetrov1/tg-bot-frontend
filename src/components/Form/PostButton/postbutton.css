@@ -4,16 +4,29 @@
   width: 100vw;
   background-color: #000;
   color: #fff;
-  font-size: 27px;
+  font-size: 23px;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
+  padding: 15px 0;
   transition: 0.5s all ease;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .postbutton:hover {
   background-color: #fff;
   color: #000;
+}
+
+@media (max-width: 450px) {
+  .postbutton {
+    font-size: 20px;
+  }
+}
+@media (max-width: 450px) {
+  .postbutton {
+    font-size: 17px;
+  }
 }
