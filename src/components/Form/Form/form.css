@@ -160,6 +160,32 @@
 
 @media (max-width: 450px) {
   .main__title {
+    font-size: 14px;
+  }
+
+  .form .title {
+    font-size: 15px;
+  }
+
+  .form input {
+    font-size: 13px;
+  }
+
+  .form select {
+    font-size: 13px;
+  }
+
+  .form textarea {
+    font-size: 13px;
+  }
+
+  .input__container h2 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main__title {
     font-size: 12px;
   }
 
@@ -181,31 +207,5 @@
 
   .input__container h2 {
     font-size: 12px;
-  }
-}
-
-@media (max-width: 400px) {
-  .main__title {
-    font-size: 10px;
-  }
-
-  .form .title {
-    font-size: 11px;
-  }
-
-  .form input {
-    font-size: 9px;
-  }
-
-  .form select {
-    font-size: 9px;
-  }
-
-  .form textarea {
-    font-size: 9px;
-  }
-
-  .input__container h2 {
-    font-size: 10px;
   }
 }
