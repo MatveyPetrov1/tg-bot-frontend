@@ -4,11 +4,19 @@ import { plusItem, minusItem } from "../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import "./listitem.css";
 
-export const ListItem = ({ title, price, imageUrl, composition, size }) => {
+export const ListItem = ({
+  title,
+  price,
+  imageUrl,
+  composition,
+  size,
+  sugar,
+}) => {
   const { items } = useSelector((state) => state.cart);
 
   const [sizeIndex, setSizeIndex] = React.useState(0);
   const [sizeValue, setSizeValue] = React.useState("");
+  const [sugarCount, setIsSugarCount] = React.useState(-1);
   const [compositionIsActive, setCompositionIsActive] = React.useState(false);
 
   const isFinded =
@@ -28,6 +36,7 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
       sizeValue,
       count: 1,
       size,
+      sugarCount: sugarCount + 1,
     };
     dispatch(plusItem(product));
   };
@@ -43,6 +52,15 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
 
   const onClickComposition = () => {
     setCompositionIsActive(!compositionIsActive);
+  };
+
+  const onClickToSugar = (i) => {
+    if (i === sugarCount) {
+      setIsSugarCount(-1);
+      console.log("To je");
+    } else {
+      setIsSugarCount(i);
+    }
   };
 
   React.useEffect(() => {
@@ -129,6 +147,27 @@ export const ListItem = ({ title, price, imageUrl, composition, size }) => {
           </div>
         ) : (
           ""
+        )}
+        {sugar && (
+          <>
+            <h3 className="sugar__block__title">Сахар</h3>
+            <div className="size__block">
+              {sugar.map((str, index) => (
+                <Link
+                  to="/"
+                  key={index}
+                  className={
+                    sugarCount === index
+                      ? `active triple__size__${index + 1}`
+                      : `triple__size__${index + 1}`
+                  }
+                  onClick={() => onClickToSugar(index)}
+                >
+                  {str}
+                </Link>
+              ))}
+            </div>
+          </>
         )}
         <div className="bottom">
           <div

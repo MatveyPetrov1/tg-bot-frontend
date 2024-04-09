@@ -12,6 +12,7 @@ export const CartItem = ({
   sizeIndex,
   sizeValue,
   composition,
+  sugarCount,
 }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
@@ -30,6 +31,7 @@ export const CartItem = ({
       sizeIndex,
       sizeValue,
       count: 1,
+      sugarCount,
     };
     dispatch(plusItem(product));
   };
