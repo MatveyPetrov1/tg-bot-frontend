@@ -67,7 +67,7 @@ export const Form = () => {
   };
 
   return (
-    <div className="form">
+    <div className="form__animation">
       <PostButton
         onSendData={onSendData}
         text={`Заказать на ${totalPrice} р.`}
