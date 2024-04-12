@@ -7,7 +7,7 @@ import { Sort } from "../components/Home/Sort/Sort";
 
 export const Home = () => {
   return (
-    <>
+    <div className="home">
       <GoToCartButton />
       <div className="container">
         <Search />
@@ -17,6 +17,6 @@ export const Home = () => {
         </div>
         <ItemList />
       </div>
-    </>
+    </div>
   );
 };

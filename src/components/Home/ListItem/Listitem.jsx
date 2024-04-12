@@ -273,7 +273,7 @@ export const ListItem = ({
         )}
         {sugar && sugarIsActive && (
           <>
-            <div className="size__block">
+            <div className="size__block sugar__choice">
               {sugar.map((str, index) => (
                 <Link
                   to="/"

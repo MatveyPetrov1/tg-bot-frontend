@@ -67,7 +67,7 @@ export const Form = () => {
   };
 
   return (
-    <>
+    <div className="form">
       <PostButton
         onSendData={onSendData}
         text={`Заказать на ${totalPrice} р.`}
@@ -139,6 +139,6 @@ export const Form = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };

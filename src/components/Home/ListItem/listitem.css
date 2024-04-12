@@ -49,7 +49,7 @@
 @keyframes composition {
   0% {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
   100% {
     opacity: 1;
@@ -68,6 +68,7 @@
   user-select: none;
   font-size: 14px;
   align-items: center;
+  font-weight: 500;
 }
 
 .price.active {
@@ -122,6 +123,10 @@
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
+}
+
+.sugar__choice {
+  animation: 1s composition;
 }
 
 .size__block {
