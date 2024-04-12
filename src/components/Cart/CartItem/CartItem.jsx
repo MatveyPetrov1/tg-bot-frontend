@@ -13,13 +13,19 @@ export const CartItem = ({
   sizeValue,
   composition,
   sugarCount,
+  siropValue,
 }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
 
   const isFinded =
     items.length > 0
-      ? items.find((obj) => obj.title === title && obj.sizeIndex === sizeIndex)
+      ? items.find(
+          (obj) =>
+            obj.title === title &&
+            obj.sizeIndex === sizeIndex &&
+            obj.price === price
+        )
       : false;
 
   const onClickPlus = () => {
@@ -32,12 +38,13 @@ export const CartItem = ({
       sizeValue,
       count: 1,
       sugarCount,
+      siropValue,
     };
     dispatch(plusItem(product));
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ title, sizeIndex }));
+    dispatch(minusItem({ title, sizeIndex, siropValue, sugarCount }));
   };
 
   return (
@@ -55,6 +62,20 @@ export const CartItem = ({
         {sizeValue && (
           <div className="size__block ">
             <Link className="active">{sizeValue}</Link>
+          </div>
+        )}
+        {siropValue.length > 0 && (
+          <div className="value__block">
+            <h1>Сиропы:</h1>
+            {siropValue.map((value) => (
+              <h3>{value}</h3>
+            ))}
+          </div>
+        )}
+        {sugarCount !== 0 && (
+          <div className="value__block">
+            <h1>Сахар</h1>
+            <h3>{sugarCount} шт.</h3>
           </div>
         )}
         <div className="bottom">

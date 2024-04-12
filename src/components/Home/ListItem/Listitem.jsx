@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { plusItem, minusItem } from "../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import "./listitem.css";
+import { Sirop } from "./Sirop";
 
 export const ListItem = ({
   title,
@@ -16,33 +17,79 @@ export const ListItem = ({
 
   const [sizeIndex, setSizeIndex] = React.useState(0);
   const [sizeValue, setSizeValue] = React.useState("");
+  const [sugarIsActive, setSugarIsActive] = React.useState(false);
+  const [siropIsActive, setSiropIsActive] = React.useState(false);
+  const [firstSiropIsActive, setFirstSiropIsActive] = React.useState(false);
+  const [secondSiropIsActive, setSecondSiropIsActive] = React.useState(false);
+  const [thirdSiropIsActive, setThirdSiropIsActive] = React.useState(false);
   const [sugarCount, setIsSugarCount] = React.useState(-1);
+  const [siropCount, setSiropCount] = React.useState({
+    sirop1: 0,
+    sirop2: 0,
+    sirop3: 0,
+  });
+  const [siropValue, setSiropValue] = React.useState({
+    sirop1: [],
+    sirop2: [],
+    sirop3: [],
+  });
   const [compositionIsActive, setCompositionIsActive] = React.useState(false);
+
+  const onCountSirop = () => {
+    if (sizeIndex === 0) {
+      return siropCount.sirop1;
+    } else if (sizeIndex === 1) {
+      return siropCount.sirop2;
+    } else if (sizeIndex === 2) {
+      return siropCount.sirop3;
+    }
+  };
+
+  const onGetSiropValues = () => {
+    if (sizeIndex === 0) {
+      return siropValue.sirop1;
+    } else if (sizeIndex === 1) {
+      return siropValue.sirop2;
+    } else if (sizeIndex === 2) {
+      return siropValue.sirop3;
+    }
+  };
 
   const isFinded =
     items.length > 0
-      ? items.find((obj) => obj.title === title && obj.sizeIndex === sizeIndex)
+      ? items.filter(
+          (obj) => obj.title === title && obj.sizeIndex === sizeIndex
+        )
       : false;
+
+  const count = isFinded && isFinded.reduce((sum, obj) => obj.count + sum, 0);
 
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
     const product = {
       title,
-      price: price[sizeIndex],
+      price: price[sizeIndex] + onCountSirop(),
       imageUrl,
       composition,
       sizeIndex,
       sizeValue,
-      count: 1,
-      size,
+      count: count ? count : 1,
       sugarCount: sugarCount + 1,
+      siropValue: onGetSiropValues(),
     };
     dispatch(plusItem(product));
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ title, sizeIndex }));
+    const product = {
+      title,
+      sizeIndex,
+      siropValue: onGetSiropValues(),
+      sugarCount: sugarCount + 1,
+    };
+
+    dispatch(minusItem(product));
   };
 
   const onClickSize = (value, index) => {
@@ -57,9 +104,46 @@ export const ListItem = ({
   const onClickToSugar = (i) => {
     if (i === sugarCount) {
       setIsSugarCount(-1);
-      console.log("To je");
     } else {
       setIsSugarCount(i);
+    }
+  };
+
+  const onClickToSirop = () => {
+    if (sizeIndex === 0) {
+      setFirstSiropIsActive(true);
+    } else if (sizeIndex === 1) {
+      setSecondSiropIsActive(true);
+    } else if (sizeIndex === 2) {
+      setThirdSiropIsActive(true);
+    }
+  };
+
+  const onClickToSelectSirop = (num, count, value) => {
+    if (num === 1) {
+      setSiropCount({ ...siropCount, sirop1: count * 40 });
+      if (value) {
+        setSiropValue({
+          ...siropValue,
+          sirop1: [...value],
+        });
+      }
+    } else if (num === 2) {
+      setSiropCount({ ...siropCount, sirop2: count * 40 });
+      if (value) {
+        setSiropValue({
+          ...siropValue,
+          sirop2: [...value],
+        });
+      }
+    } else if (num === 3) {
+      setSiropCount({ ...siropCount, sirop3: count * 40 });
+      if (value) {
+        setSiropValue({
+          ...siropValue,
+          sirop3: [...value],
+        });
+      }
     }
   };
 
@@ -69,12 +153,27 @@ export const ListItem = ({
 
   return (
     <div className="item">
+      {size.map((value, index) => (
+        <Sirop
+          siropIsActive={siropIsActive}
+          setSiropIsActive={setSiropIsActive}
+          key={index}
+          onClickToSelectSirop={onClickToSelectSirop}
+          number={index + 1}
+          firstSiropIsActive={firstSiropIsActive}
+          secondSiropIsActive={secondSiropIsActive}
+          thirdSiropIsActive={thirdSiropIsActive}
+          setFirstSiropIsActive={setFirstSiropIsActive}
+          setSecondSiropIsActive={setSecondSiropIsActive}
+          setThirdSiropIsActive={setThirdSiropIsActive}
+        />
+      ))}
       <div className="wrapper">
         <div className="image__wrapper">
           <img src={imageUrl} alt="item_image" />
           <div>
-            {isFinded && isFinded.count > 0 && (
-              <div className="count__block">{isFinded.count + " шт."}</div>
+            {isFinded.length > 0 && (
+              <div className="count__block">{count + " шт."}</div>
             )}
           </div>
         </div>
@@ -149,8 +248,31 @@ export const ListItem = ({
           ""
         )}
         {sugar && (
+          <div className="sugarsirop__block">
+            <h3
+              className={
+                sugarIsActive
+                  ? "sugar__block__title active"
+                  : "sugar__block__title"
+              }
+              onClick={() => setSugarIsActive(!sugarIsActive)}
+            >
+              Сахар
+            </h3>
+            <h3
+              className={
+                siropIsActive
+                  ? "sugar__block__title active"
+                  : "sugar__block__title"
+              }
+              onClick={onClickToSirop}
+            >
+              Сироп
+            </h3>
+          </div>
+        )}
+        {sugar && sugarIsActive && (
           <>
-            <h3 className="sugar__block__title">Сахар</h3>
             <div className="size__block">
               {sugar.map((str, index) => (
                 <Link
@@ -169,13 +291,10 @@ export const ListItem = ({
             </div>
           </>
         )}
+
         <div className="bottom">
-          <div
-            className={
-              isFinded && isFinded.count > 0 ? "price active" : "price"
-            }
-          >
-            {isFinded && isFinded.count > 0 && (
+          <div className={isFinded.length > 0 ? "price active" : "price"}>
+            {isFinded.length > 0 && (
               <svg
                 fill="#fff"
                 width="15px"
@@ -192,9 +311,9 @@ export const ListItem = ({
             )}
 
             <div className="price__plus" onClick={onClickPlus}>
-              {price[sizeIndex]} ₽
+              {price[sizeIndex] + onCountSirop()}₽
               <svg
-                fill={isFinded && isFinded.count > 0 ? "#fff" : "#000"}
+                fill={isFinded.length > 0 ? "#fff" : "#000"}
                 height="15px"
                 width="15px"
                 version="1.1"

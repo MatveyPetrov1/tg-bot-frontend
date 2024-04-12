@@ -1,0 +1,57 @@
+.sirop__fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100lvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+}
+
+.sirop__fullscreen.active {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+}
+
+.sirop__block {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px 30px;
+  max-height: 350px;
+  overflow-y: scroll;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.sirop__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+}
+
+.sirop__item h3 {
+  font-size: 15px;
+  text-align: start;
+  font-weight: 500;
+}
+
+@media (max-width: 450px) {
+  .sirop__item h3 {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .sirop__item h3 {
+    font-size: 11px;
+  }
+}

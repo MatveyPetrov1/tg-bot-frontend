@@ -10,11 +10,23 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     plusItem(state, action) {
-      const findItem = state.items.find(
-        (obj) =>
+      const findItem = state.items.find((obj) => {
+        let same = true;
+        if (state.items.length > 0) {
+          for (let i = 0; i < state.items.length; i++) {
+            if (action.payload.siropValue[i] !== obj.siropValue[i]) {
+              same = false;
+            }
+          }
+        }
+        return (
           obj.title === action.payload.title &&
-          obj.sizeIndex === action.payload.sizeIndex
-      );
+          obj.sizeIndex === action.payload.sizeIndex &&
+          obj.price === action.payload.price &&
+          obj.sugarCount === action.payload.sugarCount &&
+          same
+        );
+      });
       if (findItem) {
         findItem.count++;
       } else {
@@ -25,16 +37,39 @@ const cartSlice = createSlice({
       }, 0);
     },
     minusItem(state, action) {
-      const findItem = state.items.find(
-        (obj) =>
+      const findItem = state.items.find((obj) => {
+        let same = true;
+        for (let i = 0; i < state.items.length; i++) {
+          if (action.payload.siropValue[i] !== obj.siropValue[i]) {
+            same = false;
+          }
+        }
+        return (
           obj.title === action.payload.title &&
-          obj.sizeIndex === action.payload.sizeIndex
-      );
-      if (findItem.count === 1) {
-        state.items = state.items.filter(
-          (obj) =>
-            obj.title !== findItem.title || obj.sizeIndex !== findItem.sizeIndex
+          obj.sizeIndex === action.payload.sizeIndex &&
+          obj.sugarCount === action.payload.sugarCount &&
+          same
         );
+      });
+
+      if (findItem.count === 1) {
+        state.items = state.items.filter((obj) => {
+          let same = true;
+          if (findItem.siropValue) {
+            for (let i = 0; i < state.items.length; i++) {
+              if (findItem.siropValue[i] !== obj.siropValue[i]) {
+                same = false;
+              }
+            }
+          }
+
+          return (
+            obj.title !== findItem.title ||
+            obj.sizeIndex !== findItem.sizeIndex ||
+            obj.sugarCount !== findItem.sugarCount ||
+            !same
+          );
+        });
       } else {
         findItem.count--;
       }

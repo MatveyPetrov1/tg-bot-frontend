@@ -57,7 +57,7 @@
   }
 }
 
-.item .price {
+.price {
   display: flex;
   padding: 5px 10px;
   background: rgb(199, 202, 190);
@@ -70,25 +70,25 @@
   align-items: center;
 }
 
-.item .price.active {
+.price.active {
   background-color: rgb(146, 192, 57);
   color: #fff;
 }
 
-.item .price__minus {
+.price__minus {
   display: inline;
   cursor: pointer;
   margin-right: 7px;
 }
 
-.item .price__plus {
+.price__plus {
   display: inline;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-.item .price__plus__img {
+.price__plus__img {
   margin-left: 5px;
 }
 
@@ -128,13 +128,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.sugarsirop__block {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .sugar__block__title {
+  transition: 0.5s all ease;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 8px;
   font-size: 14px;
-  margin-bottom: 5px;
-  font-weight: 500;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.sugar__block__title.active {
+  background-color: #000;
+  color: #fff;
 }
 
 .composition__block {
@@ -168,17 +185,7 @@
   font-size: 14px;
 }
 
-.composition__block a:hover {
-  background-color: #000;
-  color: #fff;
-}
-
 .composition__block a.active {
-  background-color: #000;
-  color: #fff;
-}
-
-.composition__block button:hover {
   background-color: #000;
   color: #fff;
 }
@@ -220,11 +227,6 @@
 .size__block a.triple__size__3 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.size__block a:hover {
-  background-color: #000;
-  color: #fff;
 }
 
 .size__block a.active {
@@ -269,6 +271,10 @@
   .size__block a {
     font-size: 12px;
   }
+
+  .sugar__block__title {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -306,7 +312,7 @@
   }
 
   .item .count__block {
-    font-size: 24px;
+    font-size: 21px;
   }
 
   .size__block a {
@@ -325,5 +331,9 @@
 
   .item {
     padding: 15px 0;
+  }
+
+  .sugar__block__title {
+    font-size: 10px;
   }
 }

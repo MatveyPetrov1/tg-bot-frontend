@@ -1,1 +1,40 @@
+.value__block {
+  /* background: #000;
+  color: #fff; */
+  border-radius: 10px;
+  padding: 5px 0;
+  margin-top: 5px;
+}
 
+.value__block h3 {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.value__block h1 {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+@media (max-width: 450px) {
+  .value__block h1 {
+    font-size: 12px;
+  }
+
+  .value__block h3 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .value__block h1 {
+    font-size: 10px;
+  }
+
+  .value__block h3 {
+    font-size: 10px;
+  }
+}
