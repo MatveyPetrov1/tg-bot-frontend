@@ -3,39 +3,37 @@ import "./sirop.css";
 import "./listitem.css";
 
 const siropArr = [
-  "Карамель",
-  "Ваниль",
-  "Кокос",
-  "Лесной орех",
-  "Лаванда",
-  "Амаранта",
-  "Миндаль",
-  "Шоколад",
-  "Малиновый",
-  "Бабл-гам",
-  "Жареный орех",
-  "Белый шоколад",
-  "Айриш крим",
-  "Шоколадные печеньки",
-  "Макадамия",
-  "Солёная карамель",
-  "Попкорн",
-  "Фисташка",
-  "Мята",
-  "Манго",
-  "Мёд",
-  "Клубника",
+  "Карамель 🍭",
+  "Ваниль 🍦",
+  "Кокос 🥥",
+  "Лесной орех 🌰",
+  "Лаванда 🪻",
+  "Амаранта 🌺",
+  "Миндаль 🥔",
+  "Шоколад 🍫",
+  "Малиновый 🍓",
+  "Бабл-гам 🫧",
+  "Жареный орех 🌰",
+  "Белый шоколад 🤍",
+  "Айриш крим 🍾",
+  "Шоколадные печеньки 🍪",
+  "Макадамия 🌰",
+  "Солёная карамель 🍭",
+  "Попкорн 🍿",
+  "Фисташка 🥜",
+  "Мята 🌿",
+  "Манго 🥭",
+  "Мёд 🍯",
+  "Клубника 🍓",
 ];
 
 export const Sirop = ({
-  onClickToSelectSirop,
-  number,
-  firstSiropIsActive,
-  secondSiropIsActive,
-  thirdSiropIsActive,
-  setFirstSiropIsActive,
-  setSecondSiropIsActive,
-  setThirdSiropIsActive,
+  setSiropIsActive,
+  onChangeFirstSirop,
+  onChangeSecondSirop,
+  onChangeThirdSirop,
+  siropArray,
+  siropValue,
 }) => {
   const [selectors, setSelectors] = React.useState({
     firstSiropSelect: [],
@@ -49,29 +47,41 @@ export const Sirop = ({
   });
 
   React.useEffect(() => {
-    if (number === 1) {
-      onClickToSelectSirop(
-        1,
-        selectors.firstSiropSelect.length,
-        values.firstSirop
+    if (onChangeFirstSirop) {
+      setSelectors({ ...selectors, firstSiropSelect: [...siropArray] });
+      setValues({ ...values, firstSirop: [...siropValue] });
+    } else if (onChangeSecondSirop) {
+      setSelectors({ ...selectors, secondSiropSelect: [...siropArray] });
+      setValues({ ...values, secondSirop: [...siropValue] });
+    } else if (onChangeThirdSirop) {
+      setSelectors({ ...selectors, thirdSiropSelect: [...siropArray] });
+      setValues({ ...values, thirdSirop: [...siropValue] });
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (onChangeFirstSirop) {
+      onChangeFirstSirop(
+        [...selectors.firstSiropSelect],
+        [...values.firstSirop]
       );
-    } else if (number === 2) {
-      onClickToSelectSirop(
-        2,
-        selectors.secondSiropSelect.length,
-        values.secondSirop
+    } else if (onChangeSecondSirop) {
+      onChangeSecondSirop(
+        [...selectors.secondSiropSelect],
+        [...values.secondSirop]
       );
-    } else if (number === 3) {
-      onClickToSelectSirop(
-        3,
-        selectors.thirdSiropSelect.length,
-        values.thirdSirop
+    } else if (onChangeThirdSirop) {
+      onChangeThirdSirop(
+        [...selectors.thirdSiropSelect],
+        [...values.thirdSirop]
       );
     }
-  }, [selectors, values, number, onClickToSelectSirop]);
+  }, [selectors, values]);
+
+  // Plus sirop
 
   const plusSirop = (value, i) => {
-    if (number === 1) {
+    if (onChangeFirstSirop) {
       const findItem = values.firstSirop.find((val) => val === value);
       if (findItem) {
         return;
@@ -85,7 +95,7 @@ export const Sirop = ({
           firstSirop: [...values.firstSirop, value],
         });
       }
-    } else if (number === 2) {
+    } else if (onChangeSecondSirop) {
       const findItem = values.secondSirop.find((val) => val === value);
       if (findItem) {
         return;
@@ -99,7 +109,7 @@ export const Sirop = ({
           secondSirop: [...values.secondSirop, value],
         });
       }
-    } else if (number === 3) {
+    } else if (onChangeThirdSirop) {
       const findItem = values.thirdSirop.find((val) => val === value);
       if (findItem) {
         return;
@@ -116,8 +126,10 @@ export const Sirop = ({
     }
   };
 
+  // Minus sirop
+
   const minusSirop = (i, value) => {
-    if (number === 1) {
+    if (onChangeFirstSirop) {
       setSelectors({
         ...selectors,
         firstSiropSelect: selectors.firstSiropSelect.filter(
@@ -128,7 +140,7 @@ export const Sirop = ({
         ...values,
         firstSirop: values.firstSirop.filter((val) => val !== value),
       });
-    } else if (number === 2) {
+    } else if (onChangeSecondSirop) {
       setSelectors({
         ...selectors,
         secondSiropSelect: selectors.secondSiropSelect.filter(
@@ -139,7 +151,7 @@ export const Sirop = ({
         ...values,
         secondSirop: values.secondSirop.filter((val) => val !== value),
       });
-    } else if (number === 3) {
+    } else if (onChangeThirdSirop) {
       setSelectors({
         ...selectors,
         thirdSiropSelect: selectors.thirdSiropSelect.filter(
@@ -151,78 +163,72 @@ export const Sirop = ({
         thirdSirop: values.thirdSirop.filter((val) => val !== value),
       });
     }
-    onClickToSelectSirop(number, 0);
   };
 
-  const getPriceClass = React.useCallback(
-    (index) => {
-      if (number === 1) {
-        return selectors.firstSiropSelect.find((num) => num === index + 1)
-          ? "price active"
-          : "price";
-      } else if (number === 2) {
-        return selectors.secondSiropSelect.find((num) => num === index + 1)
-          ? "price active"
-          : "price";
-      } else if (number === 3) {
-        return selectors.thirdSiropSelect.find((num) => num === index + 1)
-          ? "price active"
-          : "price";
-      }
-    },
-    [selectors, number]
-  );
+  //Get classes
 
-  const getPlusClass = React.useCallback(
-    (index) => {
-      if (number === 1) {
-        return selectors.firstSiropSelect.find((num) => num === index + 1)
-          ? "#fff"
-          : "#000";
-      } else if (number === 2) {
-        return selectors.secondSiropSelect.find((num) => num === index + 1)
-          ? "#fff"
-          : "#000";
-      } else if (number === 3) {
-        return selectors.thirdSiropSelect.find((num) => num === index + 1)
-          ? "#fff"
-          : "#000";
-      }
-    },
-    [selectors, number]
-  );
-
-  const getCurrentSiropPage = () => {
-    if (number === 1) {
-      return firstSiropIsActive
-        ? "sirop__fullscreen active"
-        : "sirop__fullscreen";
-    } else if (number === 2) {
-      return secondSiropIsActive
-        ? "sirop__fullscreen active"
-        : "sirop__fullscreen";
-    } else if (number === 3) {
-      return thirdSiropIsActive
-        ? "sirop__fullscreen active"
-        : "sirop__fullscreen";
+  const getPriceClass = (index) => {
+    if (onChangeFirstSirop) {
+      return selectors.firstSiropSelect.find((num) => num === index + 1)
+        ? "price active"
+        : "price";
+    } else if (onChangeSecondSirop) {
+      return selectors.secondSiropSelect.find((num) => num === index + 1)
+        ? "price active"
+        : "price";
+    } else if (onChangeThirdSirop) {
+      return selectors.thirdSiropSelect.find((num) => num === index + 1)
+        ? "price active"
+        : "price";
     }
   };
 
-  const onClosePage = () => {
-    setFirstSiropIsActive(false);
-    setSecondSiropIsActive(false);
-    setThirdSiropIsActive(false);
+  const getPlusClass = (index) => {
+    if (onChangeFirstSirop) {
+      return selectors.firstSiropSelect.find((num) => num === index + 1)
+        ? "#fff"
+        : "#000";
+    } else if (onChangeSecondSirop) {
+      return selectors.secondSiropSelect.find((num) => num === index + 1)
+        ? "#fff"
+        : "#000";
+    } else if (onChangeThirdSirop) {
+      return selectors.thirdSiropSelect.find((num) => num === index + 1)
+        ? "#fff"
+        : "#000";
+    }
+  };
+
+  const getCurrentSirop = (index) => {
+    if (onChangeFirstSirop) {
+      return selectors.firstSiropSelect.find((num) => num === index + 1)
+        ? true
+        : false;
+    } else if (onChangeSecondSirop) {
+      return selectors.secondSiropSelect.find((num) => num === index + 1)
+        ? true
+        : false;
+    } else if (onChangeThirdSirop) {
+      return selectors.thirdSiropSelect.find((num) => num === index + 1)
+        ? true
+        : false;
+    }
   };
 
   return (
-    <div onClick={onClosePage} className={getCurrentSiropPage()}>
+    <div onClick={() => setSiropIsActive(false)} className="sirop__fullscreen">
       <div className="container">
         <div className="sirop__block" onClick={(e) => e.stopPropagation()}>
           {siropArr.map((str, index) => (
             <div className="sirop__item" key={index}>
-              <h3>{str}</h3>
+              <div>
+                <h3>
+                  {str}
+                  {getCurrentSirop(index) ? "✅" : ""}
+                </h3>
+              </div>
               <div className={getPriceClass(index)}>
-                {number === 1
+                {onChangeFirstSirop
                   ? selectors.firstSiropSelect.find(
                       (num) => num === index + 1
                     ) && (
@@ -240,7 +246,7 @@ export const Sirop = ({
                         <path d="M30 15.25h-28c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h28c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0z"></path>
                       </svg>
                     )
-                  : number === 2
+                  : onChangeSecondSirop
                   ? selectors.secondSiropSelect.find(
                       (num) => num === index + 1
                     ) && (
@@ -258,7 +264,7 @@ export const Sirop = ({
                         <path d="M30 15.25h-28c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h28c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0z"></path>
                       </svg>
                     )
-                  : number === 3
+                  : onChangeThirdSirop
                   ? selectors.thirdSiropSelect.find(
                       (num) => num === index + 1
                     ) && (

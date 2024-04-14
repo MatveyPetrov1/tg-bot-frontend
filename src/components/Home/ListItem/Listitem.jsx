@@ -12,6 +12,7 @@ export const ListItem = ({
   composition,
   size,
   sugar,
+  index,
 }) => {
   const { items } = useSelector((state) => state.cart);
 
@@ -19,10 +20,7 @@ export const ListItem = ({
   const [sizeValue, setSizeValue] = React.useState("");
   const [sugarIsActive, setSugarIsActive] = React.useState(false);
   const [siropIsActive, setSiropIsActive] = React.useState(false);
-  const [firstSiropIsActive, setFirstSiropIsActive] = React.useState(false);
-  const [secondSiropIsActive, setSecondSiropIsActive] = React.useState(false);
-  const [thirdSiropIsActive, setThirdSiropIsActive] = React.useState(false);
-  const [sugarCount, setIsSugarCount] = React.useState(-1);
+  const [sugarCount, setSugarCount] = React.useState(-1);
   const [siropCount, setSiropCount] = React.useState({
     sirop1: 0,
     sirop2: 0,
@@ -33,19 +31,14 @@ export const ListItem = ({
     sirop2: [],
     sirop3: [],
   });
+  const [siropArr, setSiropArr] = React.useState({
+    sirop1: [],
+    sirop2: [],
+    sirop3: [],
+  });
   const [compositionIsActive, setCompositionIsActive] = React.useState(false);
 
-  const onCountSirop = () => {
-    if (sizeIndex === 0) {
-      return siropCount.sirop1;
-    } else if (sizeIndex === 1) {
-      return siropCount.sirop2;
-    } else if (sizeIndex === 2) {
-      return siropCount.sirop3;
-    }
-  };
-
-  const onGetSiropValues = () => {
+  const checkCurrentSirop = () => {
     if (sizeIndex === 0) {
       return siropValue.sirop1;
     } else if (sizeIndex === 1) {
@@ -55,38 +48,93 @@ export const ListItem = ({
     }
   };
 
+  const checkCurrentPrice = () => {
+    if (sizeIndex === 0) {
+      return siropCount.sirop1;
+    } else if (sizeIndex === 1) {
+      return siropCount.sirop2;
+    } else if (sizeIndex === 2) {
+      return siropCount.sirop3;
+    }
+  };
+
+  const checkCurrentIndexArr = () => {
+    if (sizeIndex === 0) {
+      return siropArr.sirop1;
+    } else if (sizeIndex === 1) {
+      return siropArr.sirop2;
+    } else if (sizeIndex === 2) {
+      return siropArr.sirop3;
+    }
+  };
+
   const isFinded =
-    items.length > 0
-      ? items.filter(
-          (obj) => obj.title === title && obj.sizeIndex === sizeIndex
-        )
-      : false;
+    items.length > 0 &&
+    items.filter((obj) => {
+      return obj.title === title && obj.sizeIndex === sizeIndex;
+    });
 
   const count = isFinded && isFinded.reduce((sum, obj) => obj.count + sum, 0);
+  const lastSiropValue =
+    isFinded.length > 0
+      ? isFinded
+          .filter((obj) => obj.siropValueObj)
+          .slice(-1)
+          .map((obj) => obj.siropValueObj)
+      : "";
+  const lastSiropIndex =
+    isFinded.length > 0
+      ? isFinded
+          .filter((obj) => obj.siropArrObj)
+          .slice(-1)
+          .map((obj) => obj.siropArrObj)
+      : "";
+  const lastSiropCount =
+    isFinded.length > 0
+      ? isFinded
+          .filter((obj) => obj.siropCountObj)
+          .slice(-1)
+          .map((obj) => obj.siropCountObj)
+      : "";
+
+  React.useEffect(() => {
+    if (lastSiropValue && lastSiropIndex && lastSiropCount) {
+      setSiropValue(...lastSiropValue);
+      setSiropArr(...lastSiropIndex);
+      setSiropCount(...lastSiropCount);
+    }
+  }, []);
 
   const dispatch = useDispatch();
+
+  // Plus item to cart
 
   const onClickPlus = () => {
     const product = {
       title,
-      price: price[sizeIndex] + onCountSirop(),
+      price: price[sizeIndex] + checkCurrentPrice() * 40,
       imageUrl,
       composition,
       sizeIndex,
       sizeValue,
-      count: count ? count : 1,
-      sugarCount: sugarCount + 1,
-      siropValue: onGetSiropValues(),
+      count: 1,
+      sugarCount: sugar ? sugarCount + 1 : "",
+      siropArray: sugar ? checkCurrentSirop() : "",
+      siropCountObj: sugar ? siropCount : "",
+      siropValueObj: sugar ? siropValue : "",
+      siropArrObj: sugar ? siropArr : "",
     };
     dispatch(plusItem(product));
   };
+
+  // Minus item from cart
 
   const onClickMinus = () => {
     const product = {
       title,
       sizeIndex,
-      siropValue: onGetSiropValues(),
-      sugarCount: sugarCount + 1,
+      sugarCount: sugar ? sugarCount + 1 : "",
+      siropArray: sugar ? checkCurrentSirop() : "",
     };
 
     dispatch(minusItem(product));
@@ -97,54 +145,49 @@ export const ListItem = ({
     setSizeIndex(index);
   };
 
+  // Composition
+
   const onClickComposition = () => {
     setCompositionIsActive(!compositionIsActive);
   };
 
+  // Sugar
+
   const onClickToSugar = (i) => {
     if (i === sugarCount) {
-      setIsSugarCount(-1);
+      setSugarCount(-1);
     } else {
-      setIsSugarCount(i);
+      setSugarCount(i);
     }
   };
 
-  const onClickToSirop = () => {
-    if (sizeIndex === 0) {
-      setFirstSiropIsActive(true);
-    } else if (sizeIndex === 1) {
-      setSecondSiropIsActive(true);
-    } else if (sizeIndex === 2) {
-      setThirdSiropIsActive(true);
-    }
+  // Sirop funtions
+
+  const onChangeFirstSirop = (numArr, valArr) => {
+    setSiropCount({
+      ...siropCount,
+      sirop1: numArr.length,
+    });
+    setSiropValue({ ...siropValue, sirop1: [...valArr] });
+    setSiropArr({ ...siropArr, sirop1: [...numArr] });
   };
 
-  const onClickToSelectSirop = (num, count, value) => {
-    if (num === 1) {
-      setSiropCount({ ...siropCount, sirop1: count * 40 });
-      if (value) {
-        setSiropValue({
-          ...siropValue,
-          sirop1: [...value],
-        });
-      }
-    } else if (num === 2) {
-      setSiropCount({ ...siropCount, sirop2: count * 40 });
-      if (value) {
-        setSiropValue({
-          ...siropValue,
-          sirop2: [...value],
-        });
-      }
-    } else if (num === 3) {
-      setSiropCount({ ...siropCount, sirop3: count * 40 });
-      if (value) {
-        setSiropValue({
-          ...siropValue,
-          sirop3: [...value],
-        });
-      }
-    }
+  const onChangeSecondSirop = (numArr, valArr) => {
+    setSiropCount({
+      ...siropCount,
+      sirop2: numArr.length,
+    });
+    setSiropValue({ ...siropValue, sirop2: [...valArr] });
+    setSiropArr({ ...siropArr, sirop2: [...numArr] });
+  };
+
+  const onChangeThirdSirop = (numArr, valArr) => {
+    setSiropCount({
+      ...siropCount,
+      sirop3: numArr.length,
+    });
+    setSiropValue({ ...siropValue, sirop3: [...valArr] });
+    setSiropArr({ ...siropArr, sirop3: [...numArr] });
   };
 
   React.useEffect(() => {
@@ -153,21 +196,32 @@ export const ListItem = ({
 
   return (
     <div className="item">
-      {size.map((value, index) => (
-        <Sirop
-          siropIsActive={siropIsActive}
-          setSiropIsActive={setSiropIsActive}
-          key={index}
-          onClickToSelectSirop={onClickToSelectSirop}
-          number={index + 1}
-          firstSiropIsActive={firstSiropIsActive}
-          secondSiropIsActive={secondSiropIsActive}
-          thirdSiropIsActive={thirdSiropIsActive}
-          setFirstSiropIsActive={setFirstSiropIsActive}
-          setSecondSiropIsActive={setSecondSiropIsActive}
-          setThirdSiropIsActive={setThirdSiropIsActive}
-        />
-      ))}
+      {size.map(() => {
+        return sizeIndex === 0 && siropIsActive ? (
+          <Sirop
+            setSiropIsActive={setSiropIsActive}
+            onChangeFirstSirop={onChangeFirstSirop}
+            siropArray={siropArr.sirop1}
+            siropValue={siropValue.sirop1}
+          />
+        ) : sizeIndex === 1 && siropIsActive ? (
+          <Sirop
+            setSiropIsActive={setSiropIsActive}
+            onChangeSecondSirop={onChangeSecondSirop}
+            siropArray={siropArr.sirop2}
+            siropValue={siropValue.sirop2}
+          />
+        ) : sizeIndex === 2 && siropIsActive ? (
+          <Sirop
+            setSiropIsActive={setSiropIsActive}
+            onChangeThirdSirop={onChangeThirdSirop}
+            siropArray={siropArr.sirop3}
+            siropValue={siropValue.sirop3}
+          />
+        ) : (
+          ""
+        );
+      })}
       <div className="wrapper">
         <div className="image__wrapper">
           <img src={imageUrl} alt="item_image" />
@@ -265,7 +319,7 @@ export const ListItem = ({
                   ? "sugar__block__title active"
                   : "sugar__block__title"
               }
-              onClick={onClickToSirop}
+              onClick={() => setSiropIsActive(true)}
             >
               Сироп
             </h3>
@@ -311,7 +365,7 @@ export const ListItem = ({
             )}
 
             <div className="price__plus" onClick={onClickPlus}>
-              {price[sizeIndex] + onCountSirop()}₽
+              {price[sizeIndex] + checkCurrentPrice() * 40}₽
               <svg
                 fill={isFinded.length > 0 ? "#fff" : "#000"}
                 height="15px"

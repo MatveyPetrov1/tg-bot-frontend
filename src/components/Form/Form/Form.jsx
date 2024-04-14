@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { PostButton } from "../PostButton/PostButton";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
-const tg = window.Telegram.WebApp;
+import { MessageSuccessPage } from "./MessageSuccessPage";
 
 export const Form = () => {
   const [form, setForm] = React.useState({
@@ -16,6 +15,7 @@ export const Form = () => {
     comment: "",
   });
   const [isNumberError, setIsNumberError] = React.useState(false);
+  const [isMessageSuccess, setIsMessageSuccess] = React.useState(false);
 
   const { totalPrice, items } = useSelector((state) => state.cart);
 
@@ -52,8 +52,8 @@ export const Form = () => {
       });
 
       if (data.message === "success") {
-        setForm({ name: "", number: "" });
-        tg.close();
+        setForm({ ...form, name: "", number: "" });
+        setIsMessageSuccess(true);
       } else {
         for (let elem of data) {
           if (elem.msg === "Неверный формат телефона") {
@@ -66,7 +66,7 @@ export const Form = () => {
     }
   };
 
-  return (
+  return !isMessageSuccess ? (
     <div className="form__animation">
       <PostButton
         onSendData={onSendData}
@@ -113,10 +113,10 @@ export const Form = () => {
             <h2 className="title">К какому времени приготовить</h2>
             <div className="select__wrapper">
               <select onChange={onChangeTime}>
-                <option value="Через 15 мин">Через 15 мин</option>
-                <option value="Через 30 мин">Через 30 мин</option>
-                <option value="Через 45 мин">Через 45 мин</option>
-                <option value="Через 1 час">Через 1 час</option>
+                <option value="15 мин">Через 15 мин</option>
+                <option value="30 мин">Через 30 мин</option>
+                <option value="45 мин">Через 45 мин</option>
+                <option value="1 час">Через 1 час</option>
                 <option value="Свое время(в комментарии)">
                   Свое время(в комментарии)
                 </option>
@@ -140,5 +140,7 @@ export const Form = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <MessageSuccessPage time={form.time} />
   );
 };

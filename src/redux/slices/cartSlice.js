@@ -12,9 +12,9 @@ const cartSlice = createSlice({
     plusItem(state, action) {
       const findItem = state.items.find((obj) => {
         let same = true;
-        if (state.items.length > 0) {
-          for (let i = 0; i < state.items.length; i++) {
-            if (action.payload.siropValue[i] !== obj.siropValue[i]) {
+        if (state.items.length > 0 && action.payload.siropArray) {
+          for (let i = 0; i < obj.siropArray.length; i++) {
+            if (action.payload.siropArray[i] !== obj.siropArray[i]) {
               same = false;
             }
           }
@@ -39,9 +39,11 @@ const cartSlice = createSlice({
     minusItem(state, action) {
       const findItem = state.items.find((obj) => {
         let same = true;
-        for (let i = 0; i < state.items.length; i++) {
-          if (action.payload.siropValue[i] !== obj.siropValue[i]) {
-            same = false;
+        if (action.payload.siropArray) {
+          for (let i = 0; i < obj.siropArray.length; i++) {
+            if (obj.siropArray[i] !== action.payload.siropArray[i]) {
+              same = false;
+            }
           }
         }
         return (
@@ -55,9 +57,9 @@ const cartSlice = createSlice({
       if (findItem.count === 1) {
         state.items = state.items.filter((obj) => {
           let same = true;
-          if (findItem.siropValue) {
-            for (let i = 0; i < state.items.length; i++) {
-              if (findItem.siropValue[i] !== obj.siropValue[i]) {
+          if (findItem.siropArray) {
+            for (let i = 0; i < obj.siropArray.length; i++) {
+              if (findItem.siropArray[i] !== obj.siropArray[i]) {
                 same = false;
               }
             }
@@ -77,8 +79,12 @@ const cartSlice = createSlice({
         return obj.price * obj.count + sum;
       }, 0);
     },
+    deleteAllItems(state) {
+      state.items = [];
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { plusItem, minusItem } = cartSlice.actions;
+export const { plusItem, minusItem, deleteAllItems } = cartSlice.actions;
 export default cartSlice.reducer;

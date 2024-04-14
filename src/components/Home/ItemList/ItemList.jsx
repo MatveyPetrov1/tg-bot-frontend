@@ -66,7 +66,7 @@ export const ItemList = () => {
                 obj.title.toLowerCase().includes(searchValue.toLowerCase())
               )
               .map((obj, index) => (
-                <ListItem key={index} {...obj} />
+                <ListItem key={index} index={index} {...obj} />
               ))}
           </div>
         </>
