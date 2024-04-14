@@ -36,7 +36,7 @@ const cartSlice = createSlice({
         return sum + obj.price * obj.count;
       }, 0);
     },
-    minusItem(state, action) {
+    minusCartItem(state, action) {
       const findItem = state.items.find((obj) => {
         let same = true;
         if (action.payload.siropArray) {
@@ -79,6 +79,27 @@ const cartSlice = createSlice({
         return obj.price * obj.count + sum;
       }, 0);
     },
+    minusItem(state, action) {
+      const findItem = state.items.find((obj) => {
+        return (
+          obj.title === action.payload.title &&
+          obj.sizeIndex === action.payload.sizeIndex
+        );
+      });
+
+      if (findItem.count === 1) {
+        state.items = state.items.filter((obj) => {
+          return (
+            obj.title !== findItem.title || obj.sizeIndex !== findItem.sizeIndex
+          );
+        });
+      } else {
+        findItem.count--;
+      }
+      state.totalPrice = state.items.reduce((sum, obj) => {
+        return obj.price * obj.count + sum;
+      }, 0);
+    },
     deleteAllItems(state) {
       state.items = [];
       state.totalPrice = 0;
@@ -86,5 +107,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { plusItem, minusItem, deleteAllItems } = cartSlice.actions;
+export const { plusItem, minusItem, deleteAllItems, minusCartItem } =
+  cartSlice.actions;
 export default cartSlice.reducer;

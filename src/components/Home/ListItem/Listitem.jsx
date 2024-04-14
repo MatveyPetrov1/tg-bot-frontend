@@ -12,7 +12,6 @@ export const ListItem = ({
   composition,
   size,
   sugar,
-  index,
 }) => {
   const { items } = useSelector((state) => state.cart);
 
@@ -21,6 +20,7 @@ export const ListItem = ({
   const [sugarIsActive, setSugarIsActive] = React.useState(false);
   const [siropIsActive, setSiropIsActive] = React.useState(false);
   const [sugarCount, setSugarCount] = React.useState(-1);
+
   const [siropCount, setSiropCount] = React.useState({
     sirop1: 0,
     sirop2: 0,
@@ -58,16 +58,6 @@ export const ListItem = ({
     }
   };
 
-  const checkCurrentIndexArr = () => {
-    if (sizeIndex === 0) {
-      return siropArr.sirop1;
-    } else if (sizeIndex === 1) {
-      return siropArr.sirop2;
-    } else if (sizeIndex === 2) {
-      return siropArr.sirop3;
-    }
-  };
-
   const isFinded =
     items.length > 0 &&
     items.filter((obj) => {
@@ -76,29 +66,31 @@ export const ListItem = ({
 
   const count = isFinded && isFinded.reduce((sum, obj) => obj.count + sum, 0);
   const lastSiropValue =
-    isFinded.length > 0
-      ? isFinded
-          .filter((obj) => obj.siropValueObj)
-          .slice(-1)
-          .map((obj) => obj.siropValueObj)
-      : "";
+    isFinded.length > 0 &&
+    isFinded
+      .filter((obj) => obj.siropValueObj)
+      .slice(-1)
+      .map((obj) => obj.siropValueObj);
+
   const lastSiropIndex =
-    isFinded.length > 0
-      ? isFinded
-          .filter((obj) => obj.siropArrObj)
-          .slice(-1)
-          .map((obj) => obj.siropArrObj)
-      : "";
+    isFinded.length > 0 &&
+    isFinded
+      .filter((obj) => obj.siropArrObj)
+      .slice(-1)
+      .map((obj) => obj.siropArrObj);
   const lastSiropCount =
-    isFinded.length > 0
-      ? isFinded
-          .filter((obj) => obj.siropCountObj)
-          .slice(-1)
-          .map((obj) => obj.siropCountObj)
-      : "";
+    isFinded.length > 0 &&
+    isFinded
+      .filter((obj) => obj.siropCountObj)
+      .slice(-1)
+      .map((obj) => obj.siropCountObj);
 
   React.useEffect(() => {
-    if (lastSiropValue && lastSiropIndex && lastSiropCount) {
+    if (
+      lastSiropValue.length > 0 &&
+      lastSiropIndex.length > 0 &&
+      lastSiropCount.length > 0
+    ) {
       setSiropValue(...lastSiropValue);
       setSiropArr(...lastSiropIndex);
       setSiropCount(...lastSiropCount);
@@ -118,11 +110,11 @@ export const ListItem = ({
       sizeIndex,
       sizeValue,
       count: 1,
-      sugarCount: sugar ? sugarCount + 1 : "",
+      sugarCount: sugar && sugarCount + 1,
       siropArray: sugar ? checkCurrentSirop() : "",
-      siropCountObj: sugar ? siropCount : "",
-      siropValueObj: sugar ? siropValue : "",
-      siropArrObj: sugar ? siropArr : "",
+      siropCountObj: sugar && siropCount,
+      siropValueObj: sugar && siropValue,
+      siropArrObj: sugar && siropArr,
     };
     dispatch(plusItem(product));
   };
@@ -143,6 +135,7 @@ export const ListItem = ({
   const onClickSize = (value, index) => {
     setSizeValue(value);
     setSizeIndex(index);
+    setSugarIsActive(false);
   };
 
   // Composition
@@ -223,128 +216,135 @@ export const ListItem = ({
         );
       })}
       <div className="wrapper">
-        <div className="image__wrapper">
-          <img src={imageUrl} alt="item_image" />
-          <div>
-            {isFinded.length > 0 && (
-              <div className="count__block">{count + " шт."}</div>
-            )}
-          </div>
-        </div>
-        <h3 className="title">{title}</h3>
-        {size.length === 1 && composition && (
-          <div className="composition__block">
-            <button
-              onClick={onClickComposition}
-              className={compositionIsActive ? "active" : ""}
-            >
-              Состав
-            </button>
-            <Link className={"active"} onClick={() => onClickSize(size[0], 0)}>
-              {size[0]}
-            </Link>
-          </div>
-        )}
-        {compositionIsActive && <h6 className="composition">{composition}</h6>}
-        {size.length === 1 && !composition ? (
-          <div className="size__block">
-            <Link className="active" onClick={() => onClickSize(size[0], 0)}>
-              {size[0]}
-            </Link>
-          </div>
-        ) : size.length === 2 ? (
-          <div className="size__block">
-            <Link
-              className={
-                sizeIndex === 0 ? "active double__size__1" : "double__size__1"
-              }
-              onClick={() => onClickSize(size[0], 0)}
-            >
-              {size[0]}
-            </Link>
-            <Link
-              className={
-                sizeIndex === 1 ? "active double__size__2" : "double__size__2"
-              }
-              onClick={() => onClickSize(size[1], 1)}
-            >
-              {size[1]}
-            </Link>
-          </div>
-        ) : size.length === 3 ? (
-          <div className="size__block">
-            <Link
-              className={
-                sizeIndex === 0 ? "active triple__size__1" : "triple__size__1"
-              }
-              onClick={() => onClickSize(size[0], 0)}
-            >
-              {size[0]}
-            </Link>
-            <Link
-              className={
-                sizeIndex === 1 ? "active triple__size__2" : "triple__size__2"
-              }
-              onClick={() => onClickSize(size[1], 1)}
-            >
-              {size[1]}
-            </Link>
-            <Link
-              className={
-                sizeIndex === 2 ? "active triple__size__3" : "triple__size__3"
-              }
-              onClick={() => onClickSize(size[2], 2)}
-            >
-              {size[2]}
-            </Link>
-          </div>
-        ) : (
-          ""
-        )}
-        {sugar && (
-          <div className="sugarsirop__block">
-            <h3
-              className={
-                sugarIsActive
-                  ? "sugar__block__title active"
-                  : "sugar__block__title"
-              }
-              onClick={() => setSugarIsActive(!sugarIsActive)}
-            >
-              Сахар
-            </h3>
-            <h3
-              className={
-                siropIsActive
-                  ? "sugar__block__title active"
-                  : "sugar__block__title"
-              }
-              onClick={() => setSiropIsActive(true)}
-            >
-              Сироп
-            </h3>
-          </div>
-        )}
-        {sugar && sugarIsActive && (
-          <>
-            <div className="size__block sugar__choice">
-              {sugar.map((str, index) => (
-                <Link
-                  to="/"
-                  key={index}
-                  className={
-                    sugarCount === index
-                      ? `active triple__size__${index + 1}`
-                      : `triple__size__${index + 1}`
-                  }
-                  onClick={() => onClickToSugar(index)}
-                >
-                  {str}
-                </Link>
-              ))}
+        <div className="top">
+          <div className="image__wrapper">
+            <img src={imageUrl} alt="item_image" />
+            <div>
+              {isFinded.length > 0 && (
+                <div className="count__block">{count + " шт."}</div>
+              )}
             </div>
-          </>
-        )}
+          </div>
+          <h3 className="title">{title}</h3>
+          {size.length === 1 && composition && (
+            <div className="composition__block">
+              <button
+                onClick={onClickComposition}
+                className={compositionIsActive ? "active" : ""}
+              >
+                Состав
+              </button>
+              <Link
+                className={"active"}
+                onClick={() => onClickSize(size[0], 0)}
+              >
+                {size[0]}
+              </Link>
+            </div>
+          )}
+          {compositionIsActive && (
+            <h6 className="composition">{composition}</h6>
+          )}
+          {size.length === 1 && !composition ? (
+            <div className="size__block">
+              <Link className="active" onClick={() => onClickSize(size[0], 0)}>
+                {size[0]}
+              </Link>
+            </div>
+          ) : size.length === 2 ? (
+            <div className="size__block">
+              <Link
+                className={
+                  sizeIndex === 0 ? "active double__size__1" : "double__size__1"
+                }
+                onClick={() => onClickSize(size[0], 0)}
+              >
+                {size[0]}
+              </Link>
+              <Link
+                className={
+                  sizeIndex === 1 ? "active double__size__2" : "double__size__2"
+                }
+                onClick={() => onClickSize(size[1], 1)}
+              >
+                {size[1]}
+              </Link>
+            </div>
+          ) : size.length === 3 ? (
+            <div className="size__block">
+              <Link
+                className={
+                  sizeIndex === 0 ? "active triple__size__1" : "triple__size__1"
+                }
+                onClick={() => onClickSize(size[0], 0)}
+              >
+                {size[0]}
+              </Link>
+              <Link
+                className={
+                  sizeIndex === 1 ? "active triple__size__2" : "triple__size__2"
+                }
+                onClick={() => onClickSize(size[1], 1)}
+              >
+                {size[1]}
+              </Link>
+              <Link
+                className={
+                  sizeIndex === 2 ? "active triple__size__3" : "triple__size__3"
+                }
+                onClick={() => onClickSize(size[2], 2)}
+              >
+                {size[2]}
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
+          {sugar && (
+            <div className="sugarsirop__block">
+              <h3
+                className={
+                  sugarIsActive
+                    ? "sugar__block__title active"
+                    : "sugar__block__title"
+                }
+                onClick={() => setSugarIsActive(!sugarIsActive)}
+              >
+                Сахар
+              </h3>
+              <h3
+                className={
+                  siropIsActive
+                    ? "sugar__block__title active"
+                    : "sugar__block__title"
+                }
+                onClick={() => setSiropIsActive(true)}
+              >
+                Сироп
+              </h3>
+            </div>
+          )}
+          {sugar && sugarIsActive && (
+            <>
+              <div className="size__block sugar__choice">
+                {sugar.map((str, index) => (
+                  <Link
+                    to="/"
+                    key={index}
+                    className={
+                      sugarCount === index
+                        ? `active triple__size__${index + 1}`
+                        : `triple__size__${index + 1}`
+                    }
+                    onClick={() => onClickToSugar(index)}
+                  >
+                    {str}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
 
         <div className="bottom">
           <div className={isFinded.length > 0 ? "price active" : "price"}>

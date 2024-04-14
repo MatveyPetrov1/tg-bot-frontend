@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { plusItem, minusItem } from "../../../redux/slices/cartSlice";
+import { plusItem, minusCartItem } from "../../../redux/slices/cartSlice";
 import "../../Home/ListItem/listitem.css";
 import "./cartitem.css";
 import { Link } from "react-router-dom";
@@ -39,40 +39,44 @@ export const CartItem = ({
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ title, sizeIndex, siropArray, sugarCount }));
+    dispatch(minusCartItem({ title, sizeIndex, siropArray, sugarCount }));
   };
 
   return (
     <div className="item">
       <div className="wrapper">
-        <div className="image__wrapper">
-          <img src={imageUrl} alt="item_image" />
-          <div>
-            {isFinded && isFinded.count > 0 && (
-              <div className="count__block">{isFinded.count + " шт."}</div>
-            )}
+        <div className="top">
+          <div className="image__wrapper">
+            <img src={imageUrl} alt="item_image" />
+            <div>
+              {isFinded && isFinded.count > 0 && (
+                <div className="count__block">{isFinded.count + " шт."}</div>
+              )}
+            </div>
           </div>
+          <h3 className="title">{title}</h3>
+          {sizeValue && (
+            <div className="size__block ">
+              <Link className="active">{sizeValue}</Link>
+            </div>
+          )}
+          {siropArray.length > 0 && (
+            <div className="value__block">
+              <h1>Сиропы:</h1>
+              {siropArray.map((value) => (
+                <h3>{value}</h3>
+              ))}
+            </div>
+          )}
+          {sugarCount ? (
+            <div className="value__block">
+              <h1>Сахар</h1>
+              <h3>{sugarCount} шт.</h3>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-        <h3 className="title">{title}</h3>
-        {sizeValue && (
-          <div className="size__block ">
-            <Link className="active">{sizeValue}</Link>
-          </div>
-        )}
-        {siropArray.length > 0 && (
-          <div className="value__block">
-            <h1>Сиропы:</h1>
-            {siropArray.map((value) => (
-              <h3>{value}</h3>
-            ))}
-          </div>
-        )}
-        {sugarCount !== 0 && (
-          <div className="value__block">
-            <h1>Сахар</h1>
-            <h3>{sugarCount} шт.</h3>
-          </div>
-        )}
         <div className="bottom">
           <div
             className={

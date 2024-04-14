@@ -20,14 +20,14 @@
 }
 
 .cartlist__notfound__wrapper {
-  background-color: #000;
+  background-color: #fff;
   padding: 20px;
   border-radius: 20px;
+  color: #000;
 }
 
 .cartlist__notfound__wrapper h2 {
   margin-bottom: 15px;
-  color: #fff;
   font-size: 26px;
   display: flex;
   justify-content: center;
@@ -41,12 +41,13 @@
 .cartlist__notfound__wrapper a {
   display: flex;
   justify-content: center;
+  color: #fff;
+  background: rgb(146, 192, 57);
 }
 
 @media (max-width: 450px) {
   .cartlist__notfound__wrapper h2 {
     margin-bottom: 15px;
-    color: #fff;
     font-size: 22px;
     display: flex;
     justify-content: center;
@@ -60,7 +61,6 @@
 @media (max-width: 400px) {
   .cartlist__notfound__wrapper h2 {
     margin-bottom: 15px;
-    color: #fff;
     font-size: 18px;
     display: flex;
     justify-content: center;
