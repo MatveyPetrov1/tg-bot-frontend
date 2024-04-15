@@ -4,12 +4,14 @@ import { ListItem } from "../ListItem/Listitem";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Fullscreen } from "./Fullscreen";
+import { Preloader } from "./Preloader";
 
 export const ItemList = () => {
   const [items, setItems] = React.useState();
   const [isNotFound, setIsNotFound] = React.useState(false);
   const [fullscreenIsActive, setFullscreenIsActive] = React.useState(false);
   const [fullscreenURL, setFullscreenURL] = React.useState("");
+  const [itemsIsFound, setItemsIsFound] = React.useState(false);
 
   const { searchValue, category, sortBy } = useSelector(
     (state) => state.filter
@@ -25,7 +27,9 @@ export const ItemList = () => {
   }, [category, sortBy]);
 
   React.useEffect(() => {
+    setItemsIsFound(false);
     fetchItems();
+    setItemsIsFound(true);
   }, [fetchItems]);
 
   const shawarma = items && items.filter((obj) => obj.category === "1");
@@ -92,25 +96,29 @@ export const ItemList = () => {
   const filteredItems = () => {
     return (
       <>
-        {isNotFound
-          ? "Ничего не найдено"
-          : items && (
-              <div className="main__itemlist">
-                {fullscreenIsActive && (
-                  <Fullscreen
-                    setFullscreenIsActive={setFullscreenIsActive}
-                    fullscreenURL={fullscreenURL}
-                  />
-                )}
-                {getItem("Шаурма 🌯", shawarma)}
-                {getItem("Завертоны 🌯", zaverton)}
-                {getItem("Кофе ☕", coffee)}
-                {getItem("Горячие напитки ☕", hotDrinks)}
-                {getItem("Лимонады 🍋", lemonade)}
-                {getItem("Смузи 🍹", smoothie)}
-                {getItem("Молочные коктейли 🥤", milkShake)}
-              </div>
-            )}
+        {isNotFound && itemsIsFound ? (
+          "Ничего не найдено"
+        ) : !itemsIsFound ? (
+          <Preloader />
+        ) : (
+          items && (
+            <div className="main__itemlist">
+              {fullscreenIsActive && (
+                <Fullscreen
+                  setFullscreenIsActive={setFullscreenIsActive}
+                  fullscreenURL={fullscreenURL}
+                />
+              )}
+              {getItem("Шаурма 🌯", shawarma)}
+              {getItem("Завертоны 🌯", zaverton)}
+              {getItem("Кофе ☕", coffee)}
+              {getItem("Горячие напитки ☕", hotDrinks)}
+              {getItem("Лимонады 🍋", lemonade)}
+              {getItem("Смузи 🍹", smoothie)}
+              {getItem("Молочные коктейли 🥤", milkShake)}
+            </div>
+          )
+        )}
       </>
     );
   };

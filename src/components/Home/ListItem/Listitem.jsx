@@ -22,6 +22,7 @@ export const ListItem = ({
   const [sugarIsActive, setSugarIsActive] = React.useState(false);
   const [siropIsActive, setSiropIsActive] = React.useState(false);
   const [sugarCount, setSugarCount] = React.useState(-1);
+  const [imageIsLoaded, setImageIsLoaded] = React.useState(false);
 
   const [siropCount, setSiropCount] = React.useState({
     sirop1: 0,
@@ -223,7 +224,13 @@ export const ListItem = ({
               onClickToImage(imageUrl);
             }}
           >
-            <img src={imageUrl} alt="item_image" />
+            <div className="loader"></div>
+            <img
+              src={imageUrl}
+              alt="item_image"
+              className={imageIsLoaded ? "active" : ""}
+              onLoad={() => setImageIsLoaded(true)}
+            />
             <div>
               {isFinded.length > 0 && (
                 <div className="count__block">{count + " шт."}</div>
