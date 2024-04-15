@@ -3,10 +3,13 @@ import "./itemlist.css";
 import { ListItem } from "../ListItem/Listitem";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Fullscreen } from "./Fullscreen";
 
 export const ItemList = () => {
   const [items, setItems] = React.useState();
   const [isNotFound, setIsNotFound] = React.useState(false);
+  const [fullscreenIsActive, setFullscreenIsActive] = React.useState(false);
+  const [fullscreenURL, setFullscreenURL] = React.useState("");
 
   const { searchValue, category, sortBy } = useSelector(
     (state) => state.filter
@@ -52,6 +55,11 @@ export const ItemList = () => {
     checkItems();
   }, [checkItems]);
 
+  const onClickToImage = (url) => {
+    setFullscreenIsActive(true);
+    setFullscreenURL(url);
+  };
+
   const getItem = (name, item) => {
     const findBySearch = item.filter((obj) =>
       obj.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -66,7 +74,12 @@ export const ItemList = () => {
                 obj.title.toLowerCase().includes(searchValue.toLowerCase())
               )
               .map((obj, index) => (
-                <ListItem key={index} index={index} {...obj} />
+                <ListItem
+                  key={index}
+                  index={index}
+                  {...obj}
+                  onClickToImage={onClickToImage}
+                />
               ))}
           </div>
         </>
@@ -83,6 +96,12 @@ export const ItemList = () => {
           ? "Ничего не найдено"
           : items && (
               <div className="main__itemlist">
+                {fullscreenIsActive && (
+                  <Fullscreen
+                    setFullscreenIsActive={setFullscreenIsActive}
+                    fullscreenURL={fullscreenURL}
+                  />
+                )}
                 {getItem("Шаурма 🌯", shawarma)}
                 {getItem("Завертоны 🌯", zaverton)}
                 {getItem("Кофе ☕", coffee)}

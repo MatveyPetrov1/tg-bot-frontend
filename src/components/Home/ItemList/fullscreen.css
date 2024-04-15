@@ -1,0 +1,41 @@
+.fullscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.fullscreen img {
+  max-width: 400px;
+  border-radius: 20px;
+  animation: 0.6s fullscreen-photo;
+}
+
+@keyframes fullscreen-photo {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@media (max-width: 430px) {
+  .fullscreen img {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 370px) {
+  .fullscreen img {
+    max-width: 300px;
+  }
+}

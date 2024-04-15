@@ -13,6 +13,7 @@ export const ListItem = ({
   composition,
   size,
   sugar,
+  onClickToImage,
 }) => {
   const { items } = useSelector((state) => state.cart);
 
@@ -120,18 +121,6 @@ export const ListItem = ({
     dispatch(plusItem(product));
   };
 
-  // React.useEffect(() => {
-  //   if (
-  //     siropValue.sirop1.length > 0 ||
-  //     siropValue.sirop2.length ||
-  //     siropValue.sirop3.length
-  //   ) {
-  //     onClickPlus();
-  //   }
-  // }, [siropValue]);
-
-  // Minus item from cart
-
   const onClickMinus = () => {
     const product = {
       title,
@@ -228,7 +217,12 @@ export const ListItem = ({
       })}
       <div className="wrapper">
         <div className="top">
-          <div className="image__wrapper">
+          <div
+            className="image__wrapper"
+            onClick={() => {
+              onClickToImage(imageUrl);
+            }}
+          >
             <img src={imageUrl} alt="item_image" />
             <div>
               {isFinded.length > 0 && (
