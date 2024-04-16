@@ -12,7 +12,8 @@
 }
 
 .sirop__container {
-  padding: 0 40px;
+  width: 100%;
+  padding: 0 70px;
 }
 
 .container {
@@ -24,9 +25,9 @@
   border-radius: 15px;
   width: 100%;
   padding: 10px 20px;
-  max-height: 350px;
+  max-height: 450px;
   overflow-y: scroll;
-  max-width: 450px;
+  max-width: 500px;
   margin: 0 auto;
   animation: sirop-block 0.7s;
 }
@@ -58,6 +59,10 @@
 @media (max-width: 450px) {
   .sirop__item h3 {
     font-size: 13px;
+  }
+
+  .sirop__container {
+    padding: 0 50px;
   }
 }
 

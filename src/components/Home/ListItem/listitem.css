@@ -85,7 +85,7 @@
 
 .price {
   display: flex;
-  padding: 4px 10px;
+  padding: 5px 10px;
   background: rgb(199, 202, 190);
   color: #000;
   border: 0;
@@ -276,7 +276,7 @@
 
 @media (max-width: 450px) {
   .item {
-    padding: 15px 0;
+    padding: 12px 0;
   }
 
   .sugarsirop__block {
@@ -288,8 +288,8 @@
   }
 
   .item .image__wrapper {
-    width: 150px;
-    height: 150px;
+    width: 157px;
+    height: 157px;
   }
 
   .item .title {
@@ -392,10 +392,21 @@
   }
 
   .item {
-    padding: 15px 0;
+    padding: 8px 0;
   }
 
   .sugar__block__title {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .item .image__wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .item {
+    padding: 8px 0;
   }
 }
