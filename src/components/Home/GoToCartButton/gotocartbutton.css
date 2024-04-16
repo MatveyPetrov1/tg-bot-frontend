@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 17px;
   transition: 0.5s all ease;
   animation: 0.5s card-button;
   cursor: pointer;
@@ -32,16 +32,16 @@
 
 @media (max-width: 450px) {
   .cart__button {
-    width: 75px;
-    height: 40px;
-    font-size: 14px;
+    width: 80px;
+    height: 43px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 400px) {
   .cart__button {
-    width: 65px;
-    height: 35px;
-    font-size: 12px;
+    width: 72px;
+    height: 40px;
+    font-size: 14px;
   }
 }
