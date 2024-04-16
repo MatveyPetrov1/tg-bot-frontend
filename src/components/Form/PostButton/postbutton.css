@@ -4,15 +4,14 @@
   width: 100vw;
   background-color: #000;
   color: #fff;
-  font-size: 23px;
+  font-size: 20px;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px 0;
   transition: 0.5s all ease;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  font-weight: 600;
 }
 
 .postbutton:hover {
@@ -22,11 +21,11 @@
 
 @media (max-width: 450px) {
   .postbutton {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   .postbutton {
-    font-size: 17px;
+    font-size: 15px;
   }
 }

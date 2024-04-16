@@ -5,6 +5,23 @@
   margin-bottom: 10px;
 }
 
+.notfound {
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.notfound h1 {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.notfound h1:first-child {
+  margin-bottom: 10px;
+}
+
 .itemlist a {
   text-decoration: none;
 }
@@ -32,10 +49,16 @@
   .main__itemlist p {
     font-size: 18px;
   }
+  .notfound h1 {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 400px) {
   .main__itemlist p {
     font-size: 16px;
+  }
+  .notfound h1 {
+    font-size: 12px;
   }
 }

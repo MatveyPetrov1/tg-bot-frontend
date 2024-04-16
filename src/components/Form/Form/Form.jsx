@@ -42,7 +42,7 @@ export const Form = () => {
 
   const onSendData = async () => {
     try {
-      const { data } = await axios.post(process.env.URL, {
+      const { data } = await axios.post("http://79.174.93.190:4444/buy", {
         name: form.name,
         number: form.number,
         street: form.street,
@@ -70,7 +70,7 @@ export const Form = () => {
     <div className="form__animation">
       <PostButton
         onSendData={onSendData}
-        text={`Заказать на ${totalPrice} р.`}
+        text={`Заказать на ${totalPrice} ₽`}
       />
       <div className="container">
         <div className="form">

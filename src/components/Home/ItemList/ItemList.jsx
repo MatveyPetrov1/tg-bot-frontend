@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Fullscreen } from "./Fullscreen";
 import { Preloader } from "./Preloader";
+import { NotFoundItems } from "./NotFoundItems";
 
 export const ItemList = () => {
   const [items, setItems] = React.useState();
@@ -97,7 +98,7 @@ export const ItemList = () => {
     return (
       <>
         {isNotFound && itemsIsFound ? (
-          "Ничего не найдено"
+          <NotFoundItems />
         ) : !itemsIsFound ? (
           <Preloader />
         ) : (

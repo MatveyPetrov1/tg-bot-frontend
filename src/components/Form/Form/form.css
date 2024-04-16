@@ -118,7 +118,6 @@
   display: flex;
   justify-content: center;
 }
-
 .input__container {
   position: relative;
 }
@@ -132,6 +131,11 @@
 
 .input__container .name__error {
   margin-bottom: 10px;
+}
+
+.number__error {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .input__container .number__error {
