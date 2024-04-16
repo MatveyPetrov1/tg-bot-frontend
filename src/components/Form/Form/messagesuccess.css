@@ -19,13 +19,24 @@
 .success h1 {
   text-align: center;
   margin-bottom: 15px;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .success p {
   text-align: center;
   font-size: 18px;
-  margin-bottom: 30px;
+}
+
+.success .time {
+  margin-bottom: 20px;
+}
+
+.success .time p:first-child {
+  margin-bottom: 5px;
+}
+
+.success .time p:last-child {
+  font-weight: 600;
 }
 
 .success a {
@@ -50,7 +61,7 @@
 
 @media (max-width: 450px) {
   .success h1 {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .success p {
@@ -64,7 +75,7 @@
 
 @media (max-width: 400px) {
   .success h1 {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .success p {
