@@ -17,6 +17,7 @@ export const CartItem = ({
 }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
+  const [imageIsLoaded, setImageIsLoaded] = React.useState(false);
 
   const isFinded =
     items.length > 0
@@ -47,7 +48,13 @@ export const CartItem = ({
       <div className="wrapper">
         <div className="top">
           <div className="image__wrapper">
-            <img src={imageUrl} alt="item_image" />
+            <div className="loader"></div>
+            <img
+              src={imageUrl}
+              alt="item_image"
+              onLoad={() => setImageIsLoaded(true)}
+              className={imageIsLoaded ? "active" : ""}
+            />
             <div>
               {isFinded && isFinded.count > 0 && (
                 <div className="count__block">{isFinded.count + " шт."}</div>
