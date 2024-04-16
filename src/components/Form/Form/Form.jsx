@@ -42,7 +42,7 @@ export const Form = () => {
 
   const onSendData = async () => {
     try {
-      const { data } = await axios.post("http://localhost:4444/buy", {
+      const { data } = await axios.post("http://79.174.93.190:4444/buy", {
         name: form.name,
         number: form.number,
         street: form.street,
