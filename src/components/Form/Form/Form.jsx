@@ -42,25 +42,34 @@ export const Form = () => {
 
   const onSendData = async () => {
     try {
-      const { data } = await axios.post("http://79.174.93.190:4444/buy", {
+      const product = {
         name: form.name,
         number: form.number,
         street: form.street,
         time: form.time,
         comment: form.comment,
         items,
-      });
+      };
 
-      if (data.message === "success") {
-        setForm({ ...form, name: "", number: "" });
-        setIsMessageSuccess(true);
-      } else {
-        for (let elem of data) {
-          if (elem.msg === "Неверный формат телефона") {
-            setIsNumberError(true);
+      const checkData = (data) => {
+        if (data.message === "success") {
+          setForm({ ...form, name: "", number: "" });
+          setIsMessageSuccess(true);
+        } else {
+          for (let elem of data) {
+            if (elem.msg === "Неверный формат телефона") {
+              setIsNumberError(true);
+            }
           }
         }
-      }
+      };
+
+      await fetch("http://79.174.93.190:4444/buy", {
+        method: "POST",
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) => checkData(data));
     } catch (err) {
       console.log(err);
     }
