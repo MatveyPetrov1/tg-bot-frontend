@@ -4,18 +4,18 @@
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  padding: 20px 0;
+  padding: 13px 0;
   border-radius: 20px;
 }
 
 .item .wrapper {
-  padding-bottom: 40px;
+  padding-bottom: 45px;
   position: relative;
 }
 
 .item .image__wrapper {
-  width: 160px;
-  height: 160px;
+  width: 175px;
+  height: 175px;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
@@ -85,7 +85,7 @@
 
 .price {
   display: flex;
-  padding: 5px 10px;
+  padding: 4px 10px;
   background: rgb(199, 202, 190);
   color: #000;
   border: 0;
@@ -95,6 +95,10 @@
   font-size: 14px;
   align-items: center;
   font-weight: 500;
+}
+
+.price__sirop {
+  padding: 3px 10px;
 }
 
 .price.active {
@@ -167,7 +171,8 @@
 
 .sugarsirop__block {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  column-gap: 15px;
   margin-top: 10px;
 }
 
@@ -190,7 +195,8 @@
 
 .composition__block {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  column-gap: 15px;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -269,9 +275,21 @@
 }
 
 @media (max-width: 450px) {
+  .item {
+    padding: 15px 0;
+  }
+
+  .sugarsirop__block {
+    column-gap: 10px;
+  }
+
+  .item .wrapper {
+    padding-bottom: 40px;
+  }
+
   .item .image__wrapper {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
   }
 
   .item .title {
@@ -279,7 +297,7 @@
   }
 
   .composition__block {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
 
   .composition__block button {
@@ -309,16 +327,25 @@
   .sugar__block__title {
     font-size: 12px;
   }
+
+  .item .price__plus__img {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 @media (max-width: 400px) {
   .item .image__wrapper {
-    width: 125px;
-    height: 125px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .item .wrapper {
+    padding-bottom: 35px;
   }
 
   .item .bottom {
-    margin-top: 12px;
+    margin-top: 15px;
   }
 
   .item .title {
@@ -326,7 +353,7 @@
   }
 
   .composition__block {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .composition__block button {
@@ -339,6 +366,7 @@
 
   .item .composition {
     font-size: 9px;
+    max-width: 140px;
   }
 
   .item .price {
@@ -359,8 +387,8 @@
   }
 
   .item .price__plus__img {
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
   }
 
   .item {

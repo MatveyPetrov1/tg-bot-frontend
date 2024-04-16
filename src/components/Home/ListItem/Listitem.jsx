@@ -357,32 +357,32 @@ export const ListItem = ({
             </>
           )}
 
-          <div className="value__block">
+          <>
             {sizeIndex === 0 && siropValue.sirop1.length > 0 ? (
-              <>
+              <div className="value__block">
                 <h1>Сиропы:</h1>
                 {siropValue.sirop1.map((val) => (
                   <h3>{val}</h3>
                 ))}
-              </>
+              </div>
             ) : sizeIndex === 1 && siropValue.sirop2.length > 0 ? (
-              <>
+              <div className="value__block">
                 <h1>Сиропы:</h1>
                 {siropValue.sirop2.map((val) => (
                   <h3>{val}</h3>
                 ))}
-              </>
+              </div>
             ) : sizeIndex === 2 && siropValue.sirop3.length > 0 ? (
-              <>
+              <div className="value__block">
                 <h1>Сиропы:</h1>
                 {siropValue.sirop3.map((val) => (
                   <h3>{val}</h3>
                 ))}
-              </>
+              </div>
             ) : (
-              ""
+              false
             )}
-          </div>
+          </>
         </div>
 
         <div className="bottom">

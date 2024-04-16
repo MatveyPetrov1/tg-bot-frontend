@@ -171,15 +171,15 @@ export const Sirop = ({
     if (onChangeFirstSirop) {
       return selectors.firstSiropSelect.find((num) => num === index + 1)
         ? "price active"
-        : "price";
+        : "price price__sirop";
     } else if (onChangeSecondSirop) {
       return selectors.secondSiropSelect.find((num) => num === index + 1)
         ? "price active"
-        : "price";
+        : "price price__sirop";
     } else if (onChangeThirdSirop) {
       return selectors.thirdSiropSelect.find((num) => num === index + 1)
         ? "price active"
-        : "price";
+        : "price price__sirop";
     }
   };
 
@@ -217,7 +217,7 @@ export const Sirop = ({
 
   return (
     <div onClick={() => setSiropIsActive(false)} className="sirop__fullscreen">
-      <div className="container">
+      <div className="sirop__container">
         <div className="sirop__block" onClick={(e) => e.stopPropagation()}>
           {siropArr.map((str, index) => (
             <div className="sirop__item" key={index}>
@@ -290,7 +290,7 @@ export const Sirop = ({
                     plusSirop(str, index);
                   }}
                 >
-                  40 р
+                  40₽
                   <svg
                     fill={getPlusClass(index)}
                     height="15px"

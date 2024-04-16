@@ -11,6 +11,10 @@
   z-index: 1000;
 }
 
+.sirop__container {
+  padding: 0 40px;
+}
+
 .container {
   width: 100%;
 }
@@ -19,7 +23,7 @@
   background-color: #fff;
   border-radius: 15px;
   width: 100%;
-  padding: 10px 30px;
+  padding: 10px 20px;
   max-height: 350px;
   overflow-y: scroll;
   max-width: 450px;
