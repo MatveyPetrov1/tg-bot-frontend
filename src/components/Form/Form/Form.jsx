@@ -66,6 +66,9 @@ export const Form = () => {
 
       await fetch("http://79.174.93.190:4444/buy", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(product),
       })
         .then((res) => res.json())
