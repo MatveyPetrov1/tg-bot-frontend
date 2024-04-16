@@ -404,7 +404,7 @@ export const ListItem = ({
             )}
 
             <div className="price__plus" onClick={onClickPlus}>
-              {price[sizeIndex] + checkCurrentPrice() * 40}₽
+              {price[sizeIndex] + checkCurrentPrice() * 40} ₽
               <svg
                 fill={isFinded.length > 0 ? "#fff" : "#000"}
                 height="15px"

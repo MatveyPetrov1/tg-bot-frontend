@@ -19,7 +19,7 @@ export const CartList = () => {
 
   return items.length > 0 ? (
     <>
-      <div>
+      <div className="cartlist">
         <BuyButton text="Заказать на" />
         <h2 className="cartlist__title">Ваша корзина 🗑️</h2>
         <div className="itemlist">
@@ -34,11 +34,6 @@ export const CartList = () => {
             onClick={onClickDeleteAllItems}
           >
             Очистить корзину 🗑️
-          </Link>
-        </div>
-        <div className="cartlist__button__wrapper">
-          <Link to="/" className="cartlist__button">
-            Вернуться на главную 👈
           </Link>
         </div>
       </div>

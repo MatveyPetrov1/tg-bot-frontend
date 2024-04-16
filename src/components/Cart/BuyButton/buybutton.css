@@ -1,27 +1,40 @@
-.buybutton {
-  position: fixed;
-  bottom: 0;
-  background-color: #000;
-  color: #fff;
-  font-size: 18px;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 20px;
-  transition: 0.5s all ease;
-  animation: 0.5s buy-button;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-radius: 25px;
-  margin: 0 10px 10px 0;
-}
-
-.homebutton {
+.buttons {
   position: fixed;
   bottom: 0;
   left: 0;
-  margin: 0 10px 10px 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  padding-bottom: 15px;
+  z-index: 1000;
+}
+
+.buybutton {
+  color: #fff;
+  background-color: #000;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 17px;
+  transition: 0.5s all ease;
+  animation: 0.5s buy-button;
+  border-radius: 25px;
+  font-weight: 600;
+}
+
+.homebutton {
+  z-index: 1000;
+  padding: 11px 17px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  animation: 0.5s buy-button;
 }
 
 @keyframes buy-button {
@@ -42,12 +55,20 @@
 
 @media (max-width: 450px) {
   .buybutton {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 12px 15px;
+  }
+  .homebutton {
+    font-size: 14px;
+    padding: 9px 15px;
   }
 }
 
 @media (max-width: 400px) {
   .buybutton {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .homebutton {
+    font-size: 12px;
   }
 }

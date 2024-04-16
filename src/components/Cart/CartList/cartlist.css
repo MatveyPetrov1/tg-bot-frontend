@@ -9,6 +9,10 @@
   padding: 6px 0;
 }
 
+.cartlist {
+  padding-bottom: 70px;
+}
+
 .cartlist__button {
   background-color: #fff;
   color: #000;
