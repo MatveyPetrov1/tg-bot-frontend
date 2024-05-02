@@ -64,7 +64,7 @@ export const Form = () => {
         }
       };
 
-      await fetch("http://79.174.93.190:4444/buy", {
+      await fetch("https://tojcoffeeback.ru/buy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
