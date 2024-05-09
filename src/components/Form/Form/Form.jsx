@@ -51,7 +51,7 @@ export const Form = () => {
   }, [form.name, form.number]);
 
   const onSendData = React.useCallback(async () => {
-    const { userName } = window.Telegram.WebApp.initDataUnsafe.user;
+    const { username } = window.Telegram.WebApp.initDataUnsafe.user;
 
     const product = {
       name: form.name,
@@ -59,7 +59,7 @@ export const Form = () => {
       street: form.street,
       time: form.time,
       comment: form.comment,
-      userName: userName,
+      userName: username,
       items,
     };
 
