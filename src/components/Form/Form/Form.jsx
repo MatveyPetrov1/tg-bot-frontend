@@ -93,10 +93,10 @@ export const Form = () => {
 
   return !isMessageSuccess ? (
     <div className="form__animation">
-      <PostButton
+      {/* <PostButton
         onSendData={onSendData}
         text={`Заказать на ${totalPrice} ₽`}
-      />
+      /> */}
       <div className="container">
         <div className="form">
           <div className="wrapper">
