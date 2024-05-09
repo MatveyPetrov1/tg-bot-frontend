@@ -76,7 +76,7 @@ export const Form = () => {
       }
     };
 
-    const { data } = await axios.post("http://localhost:4444/buy", product);
+    const { data } = await axios.post("https://tojcoffeeback.ru/buy", product);
     checkData(data);
   }, [form.number, form.street, form.time, form.comment, items]);
 
