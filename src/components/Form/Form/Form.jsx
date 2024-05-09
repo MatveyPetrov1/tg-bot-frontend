@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { PostButton } from "../PostButton/PostButton";
 import { useSelector } from "react-redux";
 import { MessageSuccessPage } from "./MessageSuccessPage";
-
-const tg = window.Telegram.WebApp;
+import axios from "axios";
 
 export const Form = () => {
   const [form, setForm] = React.useState({
@@ -18,6 +17,7 @@ export const Form = () => {
 
   const [isNumberError, setIsNumberError] = React.useState(false);
   const [isMessageSuccess, setIsMessageSuccess] = React.useState(false);
+  const [postButtonIsActive, setPostButtonIsActive] = React.useState(false);
 
   const { totalPrice, items } = useSelector((state) => state.cart);
 
@@ -43,59 +43,51 @@ export const Form = () => {
   };
 
   React.useEffect(() => {
-    tg.MainButton.setParams({
-      text: `Заказать на ${totalPrice} ₽`,
-    });
-  }, []);
+    if (!form.name || !form.number) {
+      setPostButtonIsActive(false);
+    } else {
+      setPostButtonIsActive(true);
+    }
+  }, [form.name, form.number]);
 
   const onSendData = React.useCallback(async () => {
-    const data = {
+    const { username } = window.Telegram.WebApp.initDataUnsafe.user;
+
+    const product = {
       name: form.name,
       number: form.number,
       street: form.street,
       time: form.time,
       comment: form.comment,
+      user: username,
       items,
     };
 
-    // const checkData = (data) => {
-    //   if (data.message === "success") {
-    //     setForm({ ...form, name: "", number: "" });
-    //     setIsMessageSuccess(true);
-    //   } else {
-    //     for (let elem of data) {
-    //       if (elem.msg === "Неверный формат телефона") {
-    //         setIsNumberError(true);
-    //       }
-    //     }
-    //   }
-    // };
-
-    await tg.sendData(JSON.stringify(data));
-    tg.close();
-  }, [form.number, form.street, form.time, form.comment, items]);
-
-  React.useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
+    const checkData = (data) => {
+      if (data.message === "success") {
+        setForm({ ...form, name: "", number: "" });
+        setIsMessageSuccess(true);
+      } else {
+        for (let elem of data) {
+          if (elem.msg === "Неверный формат телефона") {
+            setIsNumberError(true);
+          }
+        }
+      }
     };
-  }, [onSendData]);
 
-  React.useEffect(() => {
-    if (!form.name || !form.number) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-    }
-  }, [form.name, form.number]);
+    const { data } = await axios.post("http://localhost:4444/buy", product);
+    checkData(data);
+  }, [form.number, form.street, form.time, form.comment, items]);
 
   return !isMessageSuccess ? (
     <div className="form__animation">
-      {/* <PostButton
-        onSendData={onSendData}
-        text={`Заказать на ${totalPrice} ₽`}
-      /> */}
+      {postButtonIsActive && (
+        <PostButton
+          onSendData={onSendData}
+          text={`Заказать на ${totalPrice} ₽`}
+        />
+      )}
       <div className="container">
         <div className="form">
           <div className="wrapper">
