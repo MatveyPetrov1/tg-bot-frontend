@@ -3,8 +3,9 @@ import "./form.css";
 import { Link } from "react-router-dom";
 import { PostButton } from "../PostButton/PostButton";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { MessageSuccessPage } from "./MessageSuccessPage";
+
+const tg = window.Telegram.WebApp;
 
 export const Form = () => {
   const [form, setForm] = React.useState({
@@ -14,6 +15,7 @@ export const Form = () => {
     time: "15 мин",
     comment: "",
   });
+
   const [isNumberError, setIsNumberError] = React.useState(false);
   const [isMessageSuccess, setIsMessageSuccess] = React.useState(false);
 
@@ -64,19 +66,30 @@ export const Form = () => {
         }
       };
 
-      await fetch("https://tojcoffeeback.ru/buy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      })
+      tg.sendData(JSON.stringify(product))
         .then((res) => res.json())
-        .then((data) => checkData(data));
+        .then((data) => checkData(data))
+        .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
     }
   };
+
+  React.useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [onSendData]);
+
+  React.useEffect(() => {
+    if (!form.name || !form.number) {
+      tg.MainButton.hide();
+    } else {
+      tg.MainButton.show();
+    }
+  }, []);
 
   return !isMessageSuccess ? (
     <div className="form__animation">
