@@ -89,7 +89,7 @@ export const Form = () => {
     } else {
       tg.MainButton.show();
     }
-  }, []);
+  }, [form.name, form.number]);
 
   return !isMessageSuccess ? (
     <div className="form__animation">
