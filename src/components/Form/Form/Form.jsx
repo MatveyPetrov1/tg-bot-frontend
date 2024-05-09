@@ -48,32 +48,31 @@ export const Form = () => {
     });
   }, []);
 
-  const onSendData = React.useCallback(() => {
-    try {
-      const data = {
-        name: form.name,
-        number: form.number,
-        street: form.street,
-        time: form.time,
-        comment: form.comment,
-        items,
-      };
-      // const checkData = (data) => {
-      //   if (data.message === "success") {
-      //     setForm({ ...form, name: "", number: "" });
-      //     setIsMessageSuccess(true);
-      //   } else {
-      //     for (let elem of data) {
-      //       if (elem.msg === "Неверный формат телефона") {
-      //         setIsNumberError(true);
-      //       }
-      //     }
-      //   }
-      // };
-      tg.sendData(JSON.stringify(data));
-    } catch (err) {
-      console.log(err);
-    }
+  const onSendData = React.useCallback(async () => {
+    const data = {
+      name: form.name,
+      number: form.number,
+      street: form.street,
+      time: form.time,
+      comment: form.comment,
+      items,
+    };
+
+    // const checkData = (data) => {
+    //   if (data.message === "success") {
+    //     setForm({ ...form, name: "", number: "" });
+    //     setIsMessageSuccess(true);
+    //   } else {
+    //     for (let elem of data) {
+    //       if (elem.msg === "Неверный формат телефона") {
+    //         setIsNumberError(true);
+    //       }
+    //     }
+    //   }
+    // };
+
+    await tg.sendData(JSON.stringify(data));
+    tg.close();
   }, [form.number, form.street, form.time, form.comment, items]);
 
   React.useEffect(() => {
