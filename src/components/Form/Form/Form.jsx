@@ -44,13 +44,13 @@ export const Form = () => {
 
   React.useEffect(() => {
     tg.MainButton.setParams({
-      text: `Заказать на ${totalPrice}`,
+      text: `Заказать на ${totalPrice} ₽`,
     });
   }, []);
 
-  const onSendData = () => {
+  const onSendData = React.useCallback(() => {
     try {
-      const product = {
+      const data = {
         name: form.name,
         number: form.number,
         street: form.street,
@@ -70,11 +70,11 @@ export const Form = () => {
       //     }
       //   }
       // };
-      tg.sendData(JSON.stringify(product));
+      tg.sendData(JSON.stringify(data));
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [form.number, form.street, form.time.form.comment, items]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
