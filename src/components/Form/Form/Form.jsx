@@ -76,7 +76,7 @@ export const Form = () => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
