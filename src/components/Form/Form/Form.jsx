@@ -70,7 +70,7 @@ export const Form = () => {
       //     }
       //   }
       // };
-      tg.sendData(JSON.stringify(product));
+      tg.sendData(product);
     } catch (err) {
       console.log(err);
     }
