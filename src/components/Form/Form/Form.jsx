@@ -48,7 +48,7 @@ export const Form = () => {
     });
   }, []);
 
-  const onSendData = async () => {
+  const onSendData = () => {
     try {
       const product = {
         name: form.name,
@@ -58,24 +58,19 @@ export const Form = () => {
         comment: form.comment,
         items,
       };
-
-      const checkData = (data) => {
-        if (data.message === "success") {
-          setForm({ ...form, name: "", number: "" });
-          setIsMessageSuccess(true);
-        } else {
-          for (let elem of data) {
-            if (elem.msg === "Неверный формат телефона") {
-              setIsNumberError(true);
-            }
-          }
-        }
-      };
-
-      tg.sendData(JSON.stringify(product))
-        .then((res) => res.json())
-        .then((data) => checkData(data))
-        .catch((err) => console.log(err));
+      // const checkData = (data) => {
+      //   if (data.message === "success") {
+      //     setForm({ ...form, name: "", number: "" });
+      //     setIsMessageSuccess(true);
+      //   } else {
+      //     for (let elem of data) {
+      //       if (elem.msg === "Неверный формат телефона") {
+      //         setIsNumberError(true);
+      //       }
+      //     }
+      //   }
+      // };
+      tg.sendData(JSON.stringify(product));
     } catch (err) {
       console.log(err);
     }
