@@ -35,6 +35,10 @@
   text-align: center;
 }
 
+.main__itemlist span {
+  color: red;
+}
+
 .main__itemlist p {
   color: #000;
   font-size: 22px;

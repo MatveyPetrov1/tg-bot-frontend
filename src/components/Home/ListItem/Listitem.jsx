@@ -14,6 +14,7 @@ export const ListItem = ({
   size,
   sugar,
   onClickToImage,
+  sirop,
 }) => {
   const { items } = useSelector((state) => state.cart);
 
@@ -312,8 +313,9 @@ export const ListItem = ({
           ) : (
             ""
           )}
-          {sugar && (
-            <div className="sugarsirop__block">
+
+          <div className="sugarsirop__block">
+            {sugar && (
               <h3
                 className={
                   sugarIsActive
@@ -324,6 +326,8 @@ export const ListItem = ({
               >
                 Сахар
               </h3>
+            )}
+            {sirop && (
               <h3
                 className={
                   siropIsActive
@@ -334,8 +338,9 @@ export const ListItem = ({
               >
                 Сироп
               </h3>
-            </div>
-          )}
+            )}
+          </div>
+
           {sugar && sugarIsActive && (
             <>
               <div className="size__block sugar__choice">

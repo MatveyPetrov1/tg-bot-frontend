@@ -36,10 +36,12 @@ export const ItemList = () => {
   const shawarma = items && items.filter((obj) => obj.category === "1");
   const zaverton = items && items.filter((obj) => obj.category === "2");
   const coffee = items && items.filter((obj) => obj.category === "3");
-  const hotDrinks = items && items.filter((obj) => obj.category === "4");
-  const lemonade = items && items.filter((obj) => obj.category === "5");
-  const smoothie = items && items.filter((obj) => obj.category === "6");
-  const milkShake = items && items.filter((obj) => obj.category === "7");
+  const iceCoffee = items && items.filter((obj) => obj.category === "4");
+  const hotDrinks = items && items.filter((obj) => obj.category === "5");
+  const ownLemonades = items && items.filter((obj) => obj.category === "6");
+  const lemonade = items && items.filter((obj) => obj.category === "7");
+  const smoothie = items && items.filter((obj) => obj.category === "8");
+  const milkShake = items && items.filter((obj) => obj.category === "9");
 
   const checkItems = React.useCallback(() => {
     if (items) {
@@ -65,14 +67,16 @@ export const ItemList = () => {
     setFullscreenURL(url);
   };
 
-  const getItem = (name, item) => {
+  const getItem = (name, item, newItem) => {
     const findBySearch = item.filter((obj) =>
       obj.title.toLowerCase().includes(searchValue.toLowerCase())
     );
     if (findBySearch.length > 0) {
       return (
         <>
-          <p>{name}</p>
+          <p>
+            <span>{newItem}</span> {name}
+          </p>
           <div className="itemlist">
             {item
               .filter((obj) =>
@@ -113,7 +117,9 @@ export const ItemList = () => {
               {getItem("Шаурма 🌯", shawarma)}
               {getItem("Завертоны 🌯", zaverton)}
               {getItem("Кофе ☕", coffee)}
+              {getItem("Холодный кофе ☕🧊", iceCoffee, "Новинка!")}
               {getItem("Горячие напитки ☕", hotDrinks)}
+              {getItem("Фирменные лимонады 🍋💚", ownLemonades, "Новинка!")}
               {getItem("Лимонады 🍋", lemonade)}
               {getItem("Смузи 🍹", smoothie)}
               {getItem("Молочные коктейли 🥤", milkShake)}
