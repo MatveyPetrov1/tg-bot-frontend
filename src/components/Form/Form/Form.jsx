@@ -42,6 +42,12 @@ export const Form = () => {
     setForm({ ...form, comment: e.target.value });
   };
 
+  React.useEffect(() => {
+    tg.MainButton.setParams({
+      text: `Заказать на ${totalPrice}`,
+    });
+  }, []);
+
   const onSendData = async () => {
     try {
       const product = {

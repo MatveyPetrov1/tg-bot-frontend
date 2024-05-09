@@ -5,7 +5,13 @@ import { GoToCartButton } from "../components/Home/GoToCartButton/GoToCartButton
 import { Search } from "../components/Home/Search/Search";
 import { Sort } from "../components/Home/Sort/Sort";
 
+const tg = window.Telegram.WebApp;
+
 export const Home = () => {
+  React.useEffect(() => {
+    tg.MainButton.hide();
+  }, []);
+
   return (
     <div className="home">
       <GoToCartButton />
