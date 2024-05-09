@@ -74,7 +74,7 @@ export const Form = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [form.number, form.street, form.time.form.comment, items]);
+  }, [form.number, form.street, form.time, form.comment, items]);
 
   React.useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
