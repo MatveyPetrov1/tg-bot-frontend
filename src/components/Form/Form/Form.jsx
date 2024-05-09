@@ -70,15 +70,14 @@ export const Form = () => {
       //     }
       //   }
       // };
-      tg.sendData(product);
+      tg.sendData(JSON.stringify(product));
     } catch (err) {
       console.log(err);
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
-
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
