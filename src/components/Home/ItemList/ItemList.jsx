@@ -75,7 +75,8 @@ export const ItemList = () => {
       return (
         <>
           <p>
-            <span>{newItem}</span> {name}
+            {name}
+            <span>{newItem}</span>
           </p>
           <div className="itemlist">
             {item

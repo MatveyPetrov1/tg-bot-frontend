@@ -37,6 +37,7 @@
 
 .main__itemlist span {
   color: red;
+  font-size: 18px;
 }
 
 .main__itemlist p {
@@ -53,6 +54,9 @@
   .main__itemlist p {
     font-size: 18px;
   }
+  .main__itemlist span {
+    font-size: 14px;
+  }
   .notfound h1 {
     font-size: 14px;
   }
@@ -61,6 +65,9 @@
 @media (max-width: 400px) {
   .main__itemlist p {
     font-size: 16px;
+  }
+  .main__itemlist span {
+    font-size: 12px;
   }
   .notfound h1 {
     font-size: 12px;
