@@ -22,7 +22,7 @@ export const ItemList = () => {
     const categories = category > 0 ? `category=${category}` : ``;
 
     const { data } = await axios.get(
-      `https://6f04cd2d94cdecc9.mokky.dev/items?${categories}&${sortBy}`
+      `https://b72e1643188692b5.mokky.dev/TOJCOFFEE?${categories}&${sortBy}`
     );
     setItems(data);
   }, [category, sortBy]);
