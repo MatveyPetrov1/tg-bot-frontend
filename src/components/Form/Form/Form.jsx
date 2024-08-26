@@ -60,6 +60,7 @@ export const Form = () => {
       time: form.time,
       comment: form.comment,
       userName: username,
+      data: window.Telegram.WebApp.initDataUnsafe,
       items,
     };
 
