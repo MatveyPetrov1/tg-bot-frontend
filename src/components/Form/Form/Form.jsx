@@ -61,6 +61,7 @@ export const Form = () => {
       comment: form.comment,
       userName: username,
       items,
+      userData: window.Telegram.WebApp.initDataUnsafe.user,
     };
 
     const checkData = (data) => {
